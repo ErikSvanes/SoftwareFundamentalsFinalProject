@@ -23,8 +23,11 @@ public class Log<E> implements ILog {
 
 	@Override
 	public void add(Object element) {
-		// TODO Auto-generated method stub
-
+		if(element == null) {
+			throw new NullPointerException("Cannot add null element");
+		}
+		// TODO fill in
+		
 	}
 
 	@Override
@@ -40,5 +43,6 @@ public class Log<E> implements ILog {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }

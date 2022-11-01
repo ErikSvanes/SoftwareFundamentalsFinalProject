@@ -9,5 +9,12 @@ package edu.ncsu.csc216.stp.model.io;
  *
  */
 public class TestPlanWriter {
+	
+	/**
+	 * Constructor for the TestPlanWriter class
+	 */
+	public TestPlanWriter() {
+		//Left blank on purpose
+	}
 
 }

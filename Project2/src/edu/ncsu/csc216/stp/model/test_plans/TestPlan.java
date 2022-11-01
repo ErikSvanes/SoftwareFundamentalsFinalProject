@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.stp.model.test_plans;
 
+import edu.ncsu.csc216.stp.model.tests.TestCase;
+
 /**
  * Concrete class which handles the creation of System Test Plans, as well as
  * storing their data. This class extends the AbstractTestPlan class because it
@@ -10,5 +12,34 @@ package edu.ncsu.csc216.stp.model.test_plans;
  *
  */
 public class TestPlan extends AbstractTestPlan {
+
+	/**
+	 * Constructor for a TestPlan object
+	 */
+	public TestPlan() {
+		// TODO fill in
+	}
+
+	/**
+	 * Method for returning the list of TestCases as a 2D array with their
+	 * corresponding important fields.
+	 * 
+	 * @return 2D String of the TestCase names and their important fields
+	 */
+	public String[][] getTestCasesAsArray() {
+		// TODO fill in
+		return null;
+	}
+
+	/**
+	 * Method for adding a TestCase object to a TestPlan.
+	 * 
+	 * @param t TestCase object being added to the TestPlan
+	 */
+	public void addTestCase(TestCase t) {
+		// TODO fill in
+	}
+	
+	// TODO Add compareTo method!
 
 }

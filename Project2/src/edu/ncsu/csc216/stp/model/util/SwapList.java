@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.stp.model.util;
 
+/**
+ * Class for the SwapList object, which is used to swap elements in a List
+ * @author William Hazlehurst, Erik Svanes
+ *
+ * @param <E> Generic elements which can be stored in this type of List
+ */
 public class SwapList<E> implements ISwapList {
 
 	@Override
