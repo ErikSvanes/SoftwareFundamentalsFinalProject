@@ -11,7 +11,7 @@ import edu.ncsu.csc216.stp.model.tests.TestCase;
  * @author William Hazlehurst, Erik Svanes
  *
  */
-public class TestPlan extends AbstractTestPlan implements Comparable<Object> {
+public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 
 	/**
 	 * Constructor for a TestPlan object
@@ -40,13 +40,16 @@ public class TestPlan extends AbstractTestPlan implements Comparable<Object> {
 		// TODO fill in
 	}
 
-	@Override
-	public int compareTo(Object o) {
+	/**
+	 * Method for comparing two TestPlans together
+	 * 
+	 * @param tp the TestPlan to be compared to the current instance of TestPlan
+	 * @return an integer to express which TestPlan comes before the other one when
+	 *         being sorted
+	 */
+	public int compareTo(TestPlan tp) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
-	
 
 }

@@ -48,5 +48,17 @@ public class SortedList<E> implements ISortedList {
 		return 0;
 	}
 
+	@Override
+	public void add(Comparable element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean contains(Comparable element) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }
