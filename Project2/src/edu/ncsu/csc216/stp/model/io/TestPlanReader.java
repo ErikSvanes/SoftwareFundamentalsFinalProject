@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.stp.model.io;
 
+import java.io.File;
+
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
@@ -26,9 +28,9 @@ public class TestPlanReader {
 	 * Method for reading in Test Plans from a given file path
 	 * 
 	 * @return The parsed System Test Plans as Sorted Lists of TestPlans
-	 * @param fileName Pathway of the file to be read
+	 * @param f File being read
 	 */
-	public static ISortedList<TestPlan> readTestPlansFile(String fileName) {
+	public static ISortedList<TestPlan> readTestPlansFile(File f) {
 		try {
 			// TODO fill in
 		} catch (Exception e) {

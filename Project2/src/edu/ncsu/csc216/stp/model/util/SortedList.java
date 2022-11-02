@@ -7,9 +7,11 @@ package edu.ncsu.csc216.stp.model.util;
  * @param <E> Generic element which can be stored in this given List
  */
 public class SortedList<E> implements ISortedList {
+	/** Size of the list as an integer */
+	private int size;
 
 	@Override
-	public void add(Comparable element) {
+	public void add(E element) {
 		if(element == null) {
 			throw new NullPointerException("Cannot add null element");
 		}
@@ -23,19 +25,19 @@ public class SortedList<E> implements ISortedList {
 	}
 
 	@Override
-	public Comparable remove(int idx) {
+	public Comparable<E> remove(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean contains(Comparable element) {
+	public boolean contains(E element) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Comparable get(int idx) {
+	public Comparable<E> get(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -45,5 +47,6 @@ public class SortedList<E> implements ISortedList {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
