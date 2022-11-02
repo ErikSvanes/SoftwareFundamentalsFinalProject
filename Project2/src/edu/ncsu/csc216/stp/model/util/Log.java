@@ -6,7 +6,7 @@ package edu.ncsu.csc216.stp.model.util;
  *
  * @param <E> The generic Element that can be added to a log object
  */
-public class Log<E> implements ILog {
+public class Log<E> implements ILog<E> {
 	/** Static integer which matches the initial capacity of all lists */
 	private static final int INIT_CAPACITY = 10;
 	/** The array for each log object */
@@ -17,8 +17,9 @@ public class Log<E> implements ILog {
 	/**
 	 * Constructor for a new Log object
 	 */
+	@SuppressWarnings("unchecked")
 	public Log() {
-		log = new Log[INIT_CAPACITY];
+		log = (E[]) new Log[INIT_CAPACITY];
 	}
 
 	@Override
@@ -31,7 +32,7 @@ public class Log<E> implements ILog {
 	}
 
 	@Override
-	public Object get(int idx) {
+	public E get(int idx) {
 		if(idx < 0 || idx > size) {
 			throw new IndexOutOfBoundsException();
 		}
