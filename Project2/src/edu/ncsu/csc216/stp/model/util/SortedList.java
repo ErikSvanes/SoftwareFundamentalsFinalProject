@@ -114,18 +114,14 @@ public class SortedList<E> implements ISortedList<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public E get(int idx) {
-		if (idx < 0 || idx > size) {
-			throw new IllegalArgumentException("Index " + idx + " is out of bounds for " + 
-					"length " + size);
-		}
-		if (size == 0) {
-			return null;
+		if (idx < 0 || idx >= size) {
+			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
-		for (int i = 0; i < idx - 1; i++) {
+		for (int i = 0; i < idx; i++) {
 			current = current.next;
 		}
-		return (E) current.next;
+		return (E) current.data;
 	}
 
 	@Override
