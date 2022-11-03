@@ -1,5 +1,10 @@
 package edu.ncsu.csc216.stp.model.io;
 
+import java.io.File;
+
+import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
+import edu.ncsu.csc216.stp.model.util.ISortedList;
+
 /**
  * Concrete class which handles writing System Test Plans and the Test Cases
  * which belong to them to a text file, allowing for the User to export their
@@ -9,12 +14,25 @@ package edu.ncsu.csc216.stp.model.io;
  *
  */
 public class TestPlanWriter {
-	
+
 	/**
 	 * Constructor for the TestPlanWriter class
 	 */
 	public TestPlanWriter() {
-		//Left blank on purpose
+		// Left blank on purpose
+	}
+
+	/**
+	 * Method that handles all of the file output that the program needs. It takes
+	 * in a file to write to, and the list of test plans to write in that file.
+	 * 
+	 * @param f         the file that the method will write to
+	 * @param testPlans the ISortedList of test plans to write in the file
+	 * @throws IllegalArgumentException if there is any errors or exceptions while
+	 *                                  writing to the file
+	 */
+	public void writeTestPlanFile(File f, ISortedList<TestPlan> testPlans) {
+
 	}
 
 }
