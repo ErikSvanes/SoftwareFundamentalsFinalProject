@@ -30,7 +30,10 @@ public class TestCase {
 	 * @param expectedResults Expected Results of the TestCase as a String
 	 */
 	public TestCase(String testCaseId, String testType, String testDescription, String expectedResults) {
-		// TODO fill in
+		setTestCaseId(testCaseId);
+		setTestType(testType);
+		setTestDescription(testDescription);
+		setExpectedResults(expectedResults);
 	}
 
 	/**
