@@ -50,7 +50,7 @@ public class SortedList<E> implements ISortedList<E> {
 		TestCase temp;
 		boolean onlyFailed = true;
 		try {
-			tsAdd = (TestCase) element;			
+			tsAdd = (TestCase) element;
 		} catch (Exception e) {
 			System.out.println("Element is not a test case");
 			return;
@@ -66,11 +66,9 @@ public class SortedList<E> implements ISortedList<E> {
 			}
 			if (!temp.isTestCasePassing()) {
 				firstPassingTS++;
-			}
-			else if (temp.isTestCasePassing()) {
+			} else if (temp.isTestCasePassing()) {
 				onlyFailed = false;
-			}
-			else {
+			} else {
 				break;
 			}
 			current = current.next;
@@ -113,10 +111,18 @@ public class SortedList<E> implements ISortedList<E> {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E get(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		if (idx < 0 || idx > size) {
+			throw new IllegalArgumentException("Index " + idx + " is out of bounds for " + 
+					"length " + size);
+		}
+		ListNode current = front;
+		for (int i = 0; i < idx; i++) {
+			current = current.next;
+		}
+		return (E) current.next;
 	}
 
 	@Override
