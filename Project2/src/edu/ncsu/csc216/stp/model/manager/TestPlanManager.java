@@ -139,4 +139,12 @@ public class TestPlanManager {
 		// TODO fill in
 	}
 
+	/**
+	 * Method for clearing the failing test list of all Test Cases across all Test
+	 * Plans
+	 */
+	public void clearTestPlans() {
+		// TODO fill in
+	}
+	
 }

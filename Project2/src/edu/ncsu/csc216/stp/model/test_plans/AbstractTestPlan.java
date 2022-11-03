@@ -65,10 +65,10 @@ public abstract class AbstractTestPlan {
 	/**
 	 * Method for removing a specified TestCase from the list of TestCases
 	 * 
-	 * @param t TestCase being removed
+	 * @param idx index of TestCase being removed
 	 * @return the TestCase which was removed
 	 */
-	public TestCase removeTestCase(TestCase t) {
+	public TestCase removeTestCase(int idx) {
 		return null;
 		// TODO fill in
 	}
