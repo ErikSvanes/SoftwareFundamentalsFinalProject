@@ -23,10 +23,17 @@ public class Log<E> implements ILog<E> {
 	}
 
 	@Override
-	public void add(Object element) {
+	public void add(E element) {
 		if(element == null) {
 			throw new NullPointerException("Cannot add null element");
 		}
+		if (size == log.length) {
+			growArray();
+		}
+		if (size == 0) {
+			log[0] = element;
+		}
+		
 		// TODO fill in
 		
 	}
@@ -45,5 +52,14 @@ public class Log<E> implements ILog<E> {
 		return 0;
 	}
 
+	@SuppressWarnings("unchecked")
+	private void growArray() {
+		int currentLength = log.length;
+		E[] newArr = (E[])(new Object[currentLength * 2]);
+		for(int i = 0; i < currentLength; i++) {
+			newArr[i] = log[i];
+		}
+		log = newArr;
+	}
 
 }

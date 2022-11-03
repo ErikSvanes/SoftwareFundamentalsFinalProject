@@ -40,19 +40,19 @@ public class SortedList<E> implements ISortedList<E> {
 		ListNode current = front;
 		while (current != null) {
 			if (element.equals(current.data)) {
-				throw new IllegalArgumentException("No duplicate elements.");
+				throw new IllegalArgumentException("Cannot add duplicate element.");
 			}
 			current = current.next;
 		}
 		// if first node in the list
-		if (front == null) {
+		if (size == 0) {
 			front = new ListNode(element);
 			size++;
 			return;
 		}
 		// add the element
 		TestCase tsAdd;
-		TestCase temp;
+		TestCase temp = new TestCase("temp", "temp", "temp", "temp");
 		boolean onlyFailed = true;
 		try {
 			tsAdd = (TestCase) element;
@@ -66,7 +66,7 @@ public class SortedList<E> implements ISortedList<E> {
 			try {
 				temp = (TestCase) current.next.data;
 			} catch (Exception e) {
-				System.out.println("Could not cast");
+				System.out.println("Could not cast " + temp.getTestCaseId());
 				return;
 			}
 			if (!temp.isTestCasePassing()) {
