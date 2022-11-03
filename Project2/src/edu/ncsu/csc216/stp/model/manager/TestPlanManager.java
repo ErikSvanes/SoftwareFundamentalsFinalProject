@@ -162,7 +162,16 @@ public class TestPlanManager {
 	 * TestPlans
 	 */
 	public void removeTestPlan() {
-		// TODO fill in
+		if (currentTestPlan instanceof FailingTestList) { // Cannot remove the list of Failing test Cases
+			throw new IllegalArgumentException("The Failing Tests list may not be edited.");
+		}
+		for (int i = 0; i < testPlans.size(); i++) { // Search for the current TestPlan's ID
+			if (testPlans.get(i).getTestPlanName() == currentTestPlan.getTestPlanName()) {
+				testPlans.remove(i);
+			}
+		}
+		// TODO Test this is correct
+		currentTestPlan = failList;
 	}
 
 	/**
@@ -171,7 +180,16 @@ public class TestPlanManager {
 	 * @param t The TestCase being added to the currently selected TestPlan
 	 */
 	public void addTestCase(TestCase t) {
+		if (currentTestPlan instanceof FailingTestList) { // Cannot add a test case to the list of failing tests
+			return;
+		} else if (currentTestPlan instanceof TestPlan) {
+			currentTestPlan.addTestCase(t);
+			if (!t.isTestCasePassing()) {
+				// TODO update the list of failing tests
+			}
+		}
 		// TODO fill in
+		isChanged = true;
 	}
 
 	/**
@@ -191,7 +209,11 @@ public class TestPlanManager {
 	 * Plans
 	 */
 	public void clearTestPlans() {
-		// TODO fill in
+		testPlans = new SortedList<TestPlan>(); // Empty the list of TestPlans
+		failList = new FailingTestList(); // Clear the list of Failing Test Cases
+		currentTestPlan = failList; // Set the current TestPlan to the list of failing tests
+		isChanged = false; // isChanged will not be false
+		// TODO Test this is correct
 	}
 
 }
