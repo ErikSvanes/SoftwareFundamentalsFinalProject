@@ -83,6 +83,7 @@ public class SortedList<E> implements ISortedList<E> {
 		if (firstPassingTS == -1) {
 			current = new ListNode(element);
 			size++;
+			System.out.println(tsAdd.getTestCaseId());
 			return;
 		}
 		// if the list only is failed test cases
@@ -92,6 +93,7 @@ public class SortedList<E> implements ISortedList<E> {
 			}
 			current = new ListNode(element);
 			size++;
+			System.out.println(tsAdd.getTestCaseId());
 			return;
 		}
 		// if its not only failed test cases
@@ -102,6 +104,7 @@ public class SortedList<E> implements ISortedList<E> {
 		current.next = new ListNode(element);
 		current.next.next = savedReference;
 		size++;
+		System.out.println(tsAdd.getTestCaseId());
 	}
 
 	/**
@@ -149,14 +152,27 @@ public class SortedList<E> implements ISortedList<E> {
 			return null;
 		}
 		if (idx < 0 || idx >= size) {
-			System.out.println("idx: " + idx + " size: " + size);
 			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
-		for (int i = 0; i < idx - 1; i++) {
+		for (int i = 0; i < idx; i++) {
 			current = current.next;
 		}
+		System.out.println(((TestCase) current.data).getTestCaseId());
 		return (E) current.data;
+		
+//		if (idx == 0 && size == 0) {
+//			return null;
+//		}
+//		if (idx < 0 || idx >= size) {
+//			System.out.println("idx: " + idx + " size: " + size);
+//			throw new IndexOutOfBoundsException();
+//		}
+//		ListNode current = front;
+//		for (int i = 0; i < idx - 1; i++) {
+//			current = current.next;
+//		}
+//		return (E) current.data;
 	}
 
 	@Override
