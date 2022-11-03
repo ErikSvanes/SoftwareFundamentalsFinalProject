@@ -104,10 +104,31 @@ public class SortedList<E> implements ISortedList<E> {
 		size++;
 	}
 
+	/**
+	 * Method to remove an element at a given index. Returns the removed element. 
+	 * @param idx the index to remove
+	 * @return the data of the removed element
+	 */
 	@Override
 	public E remove(int idx) {
-		// TODO Auto-generated method stub
-		return null;
+		if (idx < 0 || idx > size) {
+			throw new IllegalArgumentException();
+		}
+		if (idx == 0) {
+			E returnValue = front.data;
+			front = front.next;
+			size--;
+			return returnValue;
+		} else {
+			ListNode current = front;
+			for (int i = 0; i < idx - 1; i++) {
+				current = current.next;
+			}
+			ListNode returnValue = current.next;
+			current.next = current.next.next;
+			size--;
+			return (E) returnValue.data;
+		}
 	}
 
 	@Override
