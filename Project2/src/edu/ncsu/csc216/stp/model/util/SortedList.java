@@ -149,6 +149,7 @@ public class SortedList<E> implements ISortedList<E> {
 			return null;
 		}
 		if (idx < 0 || idx >= size) {
+			System.out.println("idx: " + idx + " size: " + size);
 			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
