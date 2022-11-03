@@ -25,6 +25,11 @@ public class SortedList<E> implements ISortedList<E> {
 		size = 0;
 	}
 
+	/**
+	 * This method adds the Test Case given to the parameter into a sorted spot in the list
+	 * 
+	 * @param element the Test Case to add to the list
+	 */
 	@Override
 	public void add(E element) {
 		// null check the element
@@ -111,7 +116,12 @@ public class SortedList<E> implements ISortedList<E> {
 		return false;
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * This method gets the element at the specified index
+	 * 
+	 * @param idx the index of the element
+	 * @return the element at the index
+	 */
 	@Override
 	public E get(int idx) {
 		if (idx < 0 || idx >= size) {
