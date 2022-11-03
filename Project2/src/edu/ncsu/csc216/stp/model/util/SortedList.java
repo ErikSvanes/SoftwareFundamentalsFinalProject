@@ -122,7 +122,7 @@ public class SortedList<E> implements ISortedList<E> {
 			return null;
 		}
 		ListNode current = front;
-		for (int i = 0; i < idx; i++) {
+		for (int i = 0; i < idx - 1; i++) {
 			current = current.next;
 		}
 		return (E) current.next;
