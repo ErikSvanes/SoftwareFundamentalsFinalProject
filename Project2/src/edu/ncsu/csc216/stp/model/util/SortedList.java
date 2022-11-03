@@ -64,9 +64,9 @@ public class SortedList<E> implements ISortedList<E> {
 		int firstPassingTS = -1;
 		while (current != null) {
 			try {
-				temp = (TestCase) current.next.data;
+				temp = (TestCase) current.data;
 			} catch (Exception e) {
-				System.out.println("Could not cast " + current.next.data);
+				System.out.println("Could not cast " + current.data);
 				return;
 			}
 			if (!temp.isTestCasePassing()) {
