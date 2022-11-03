@@ -88,10 +88,41 @@ public class SortedList<E> implements ISortedList<E> {
 		}
 		// if the list only is failed test cases
 		if (onlyFailed) {
-			while (current != null) {
+			// if size is 1
+			if (size == 1) {
+				temp = (TestCase) current.data;
+				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+					front = new ListNode(element, front);
+					size++;
+					return;
+				}
+				else {
+					current.next = new ListNode(element);
+					size++;
+					return;
+				}
+			}
+			for (int i = 0; i < size - 1; i++) {
+				// if it should be the first element
+				temp = (TestCase) current.data;
+				if (i == 0 && tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+//					ListNode savedReference = front;
+					front = new ListNode(element, front);
+					size++;
+					return;
+				}
+				temp = (TestCase) current.next.data;
+				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+					ListNode savedReference = current.next;
+					current.next = new ListNode(element);
+					current.next.next = savedReference;
+					size++;
+					return;
+				}
 				current = current.next;
 			}
-			current = new ListNode(element);
+			// ^^ temp fix until we can sort the test cases using compare to
+			current.next = new ListNode(element);
 			size++;
 			System.out.println(tsAdd.getTestCaseId());
 			return;
@@ -158,7 +189,7 @@ public class SortedList<E> implements ISortedList<E> {
 		for (int i = 0; i < idx; i++) {
 			current = current.next;
 		}
-		System.out.println(((TestCase) current.data).getTestCaseId());
+//		System.out.println(((TestCase) current.data).getTestCaseId());
 		return (E) current.data;
 		
 //		if (idx == 0 && size == 0) {
