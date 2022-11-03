@@ -37,7 +37,7 @@ public class SortedList<E> implements ISortedList<E> {
 	}
 
 	@Override
-	public Comparable<E> get(int idx) {
+	public E get(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,18 +47,5 @@ public class SortedList<E> implements ISortedList<E> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public void add(Comparable element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean contains(Comparable element) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 }
