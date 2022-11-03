@@ -8,6 +8,7 @@
  - **Generate all classes and subclasses:** Will **Due:** 10/31/22 **Status:** Completed on 10/31/22 <br>
  - **Generate all methods:** Will **Due:** 11/1/22 **Status:** Completed on 11/1/22 <br>
  - **Begin testing for each class:** Erik **Due:** 11/2/22 **Status:** Pending <br>
+ - **Resolve Compiler errors:** Erik **Due:** 11/2/22 **Status:** Completed on 11/2/22 <br>
  - **Generate Javadoc:** TBD **Due:** 11/9/22 **Status:** Pending <br>
 
 ## Process Points 2 <br>
