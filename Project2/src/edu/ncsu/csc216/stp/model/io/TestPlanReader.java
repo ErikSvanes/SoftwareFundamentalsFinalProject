@@ -36,7 +36,7 @@ public class TestPlanReader {
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Unable to load file");
 		}
-
+		return null;
 	}
 
 	/**

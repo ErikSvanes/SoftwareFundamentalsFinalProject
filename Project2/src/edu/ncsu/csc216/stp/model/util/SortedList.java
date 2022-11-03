@@ -6,7 +6,7 @@ package edu.ncsu.csc216.stp.model.util;
  *
  * @param <E> Generic element which can be stored in this given List
  */
-public class SortedList<E> implements ISortedList {
+public class SortedList<E> implements ISortedList<E> {
 	/** Size of the list as an integer */
 	private int size;
 
@@ -25,7 +25,7 @@ public class SortedList<E> implements ISortedList {
 	}
 
 	@Override
-	public Comparable<E> remove(int idx) {
+	public E remove(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
