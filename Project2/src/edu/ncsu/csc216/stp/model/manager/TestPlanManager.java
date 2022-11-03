@@ -3,7 +3,11 @@ package edu.ncsu.csc216.stp.model.manager;
 import java.io.File;
 
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
+import edu.ncsu.csc216.stp.model.test_plans.FailingTestList;
+import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
+import edu.ncsu.csc216.stp.model.util.ISortedList;
+import edu.ncsu.csc216.stp.model.util.SortedList;
 
 /**
  * Concrete class which stores the Test Plans being worked on by the User, as
@@ -17,11 +21,21 @@ import edu.ncsu.csc216.stp.model.tests.TestCase;
 public class TestPlanManager {
 	/** Boolean for whether or not the system has been changed */
 	private boolean isChanged;
+	/** SortedList of test plans */
+	ISortedList<TestPlan> testPlans;
+	/** List of failing test cases */
+	FailingTestList failList;
+	/** AbstractTestPlan for the Current Test Plan the User has selected */
+	AbstractTestPlan currentTestPlan = null;
 
 	/**
 	 * Constructor for the TestPlanManager singleton method
 	 */
 	public TestPlanManager() {
+		testPlans = new SortedList<TestPlan>(); // Initialize the testPlan
+		failList = new FailingTestList(); // Initialize the list of failing tests
+		currentTestPlan = failList; // Set the list of failing test cases to the current Test Plan
+		isChanged = false; // Since this has just been constructed, the project has yet to be changed
 		// TODO fill in
 	}
 
@@ -32,6 +46,7 @@ public class TestPlanManager {
 	 */
 	public void loadTestPlans(File testPlanFile) {
 		// TODO fill in
+		isChanged = true;
 	}
 
 	/**
@@ -41,6 +56,7 @@ public class TestPlanManager {
 	 */
 	public void saveTestPlans(File testPlanFile) {
 		// TODO fill in
+		isChanged = false;
 	}
 
 	/**
@@ -49,8 +65,8 @@ public class TestPlanManager {
 	 * @return Boolean of whether or not the state of the system has been changed
 	 */
 	public boolean isChanged() {
-		return false;
-		// TODO fill in
+		return isChanged;
+		// TODO Verify this is correct
 	}
 
 	/**
@@ -59,7 +75,17 @@ public class TestPlanManager {
 	 * @param testPlanName Name of the TestPlan being added
 	 */
 	public void addTestPlan(String testPlanName) {
-		// TODO fill in
+		if (testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) { // New Test Plan's name cannot be the same as the
+			throw new IllegalArgumentException("Invalid name."); // list of failing tests
+		}
+		for (int i = 0; i < testPlans.size(); i++) { // Cannot have duplicate TestPlan names
+			if (testPlans.get(i).getTestPlanName() == testPlanName) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+		}
+
+		// TODO Actually add the TestPlan to the list of TestPlans
+		isChanged = true;
 	}
 
 	/**
@@ -69,7 +95,12 @@ public class TestPlanManager {
 	 * @return 1D array of Strings of the names of the TestPlans
 	 */
 	public String[] getTestPlanNames() {
-		return null;
+		String[] names = new String[testPlans.size() + 1];
+		names[0] = FailingTestList.FAILING_TEST_LIST_NAME;
+		for (int i = 0; i < testPlans.size(); i++) {
+			names[i + 1] = testPlans.get(i).getTestPlanName();
+		}
+		return names;
 		// TODO fill in
 	}
 
@@ -87,7 +118,14 @@ public class TestPlanManager {
 	 * @param testPlanName Name of the TestPlan the User has selected
 	 */
 	public void setCurrentTestPlan(String testPlanName) {
-		// TODO fill in
+		for (int i = 0; i < testPlans.size(); i++) { // Find a TestPlan with the name given
+			if (testPlanName == testPlans.get(i).getTestPlanName()) {
+				currentTestPlan = testPlans.get(i);
+				return; // End the loop so the current is not set the the list of failing tests
+			}
+		}
+		currentTestPlan = failList; // If the TestPlan cannot be found, set current to list of failing tests
+		// TODO Test this is done correctly
 	}
 
 	/**
@@ -97,8 +135,8 @@ public class TestPlanManager {
 	 * @return The currently selected TestPlan as an AbstractTestPlan
 	 */
 	public AbstractTestPlan getCurrentTestPlan() {
-		// TODO fill in
-		return null;
+		return currentTestPlan;
+		// TODO Test this is correct
 	}
 
 	/**
@@ -107,6 +145,15 @@ public class TestPlanManager {
 	 * @param testPlanName Name of the TestPlan the User wants to edit
 	 */
 	public void editTestPlan(String testPlanName) {
+		if (currentTestPlan.getTestPlanName() == FailingTestList.FAILING_TEST_LIST_NAME
+				|| currentTestPlan instanceof FailingTestList) {
+			throw new IllegalArgumentException("Invalid name."); // Current TestPlan cannot be a list of failing tests
+		}
+		for (int i = 0; i < testPlans.size(); i++) {
+			if (currentTestPlan.getTestPlanName() == testPlans.get(i).getTestPlanName()) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+		}
 		// TODO fill in
 	}
 
@@ -146,5 +193,5 @@ public class TestPlanManager {
 	public void clearTestPlans() {
 		// TODO fill in
 	}
-	
+
 }
