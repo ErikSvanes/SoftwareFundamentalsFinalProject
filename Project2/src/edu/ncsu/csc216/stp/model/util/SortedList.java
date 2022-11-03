@@ -145,6 +145,9 @@ public class SortedList<E> implements ISortedList<E> {
 	 */
 	@Override
 	public E get(int idx) {
+		if (idx == 0 && size == 0) {
+			return null;
+		}
 		if (idx < 0 || idx >= size) {
 			throw new IndexOutOfBoundsException();
 		}
