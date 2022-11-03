@@ -13,10 +13,15 @@ import edu.ncsu.csc216.stp.model.tests.TestCase;
  */
 public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 
+	/** The name of the test plan */
+	private String testPlanName;
+	
 	/**
 	 * Constructor for a TestPlan object
+	 * 
+	 * @param testPlanName name of the Test Plan
 	 */
-	public TestPlan() {
+	public TestPlan(String testPlanName) {
 		// TODO fill in
 	}
 
