@@ -118,6 +118,9 @@ public class SortedList<E> implements ISortedList<E> {
 			throw new IllegalArgumentException("Index " + idx + " is out of bounds for " + 
 					"length " + size);
 		}
+		if (size == 0) {
+			return null;
+		}
 		ListNode current = front;
 		for (int i = 0; i < idx; i++) {
 			current = current.next;
