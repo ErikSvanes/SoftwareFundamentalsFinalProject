@@ -31,8 +31,8 @@ public class TestPlanWriter {
 	 * @throws IllegalArgumentException if there is any errors or exceptions while
 	 *                                  writing to the file
 	 */
-	public void writeTestPlanFile(File f, ISortedList<TestPlan> testPlans) {
-
+	public static void writeTestPlanFile(File f, ISortedList<TestPlan> testPlans) {
+		// TODO fill in
 	}
 
 }
