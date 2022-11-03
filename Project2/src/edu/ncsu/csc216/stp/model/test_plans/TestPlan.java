@@ -22,6 +22,12 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 * @param testPlanName name of the Test Plan
 	 */
 	public TestPlan(String testPlanName) {
+		super(testPlanName);
+		if(testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) {
+			throw new IllegalArgumentException("Invalid name.");
+		} else {
+			// TODO fill in
+		}
 		// TODO fill in
 	}
 
@@ -41,6 +47,7 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 * 
 	 * @param t TestCase object being added to the TestPlan
 	 */
+	@Override
 	public void addTestCase(TestCase t) {
 		// TODO fill in
 	}

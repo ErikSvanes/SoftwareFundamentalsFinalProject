@@ -2,6 +2,7 @@ package edu.ncsu.csc216.stp.model.test_plans;
 
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 import edu.ncsu.csc216.stp.model.util.ISwapList;
+import edu.ncsu.csc216.stp.model.util.SwapList;
 
 /**
  * Abstract class which is used to create the two types of test plans, normal
@@ -17,11 +18,20 @@ import edu.ncsu.csc216.stp.model.util.ISwapList;
 public abstract class AbstractTestPlan {
 	/** Private String of the TestPlan's name */
 	private String testPlanName;
+	/** SwapList of all testCases for a TestPlan */
+	SwapList<TestCase> testCases;
 
 	/**
 	 * Constructor for an AbstractTestPlan
+	 * 
+	 * @param testPlanName String the Test Plan's name is being set to
 	 */
-	public AbstractTestPlan() {
+	public AbstractTestPlan(String testPlanName) {
+		if(testPlanName == null || testPlanName.isEmpty()) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
+		setTestPlanName(testPlanName);
+		testCases = new SwapList<TestCase>();
 		// TODO fill in
 	}
 
@@ -48,9 +58,10 @@ public abstract class AbstractTestPlan {
 	 * 
 	 * @return ISwapList of TestCases
 	 */
+	@SuppressWarnings("unchecked")
 	public ISwapList<TestCase> getTestCases() {
-		return null;
-		// TODO fill in
+		return testCases;
+		// TODO Test this is working properly
 	}
 
 	/**
@@ -59,7 +70,8 @@ public abstract class AbstractTestPlan {
 	 * @param t TestCase object being added to the TestPlan
 	 */
 	public void addTestCase(TestCase t) {
-		// TODO fill in
+		// TODO testCases.add(t);
+		// TODO Must implement SwapList to implement correctly
 	}
 
 	/**
@@ -69,8 +81,9 @@ public abstract class AbstractTestPlan {
 	 * @return the TestCase which was removed
 	 */
 	public TestCase removeTestCase(int idx) {
+		// TODO testCases.remove(idx);
 		return null;
-		// TODO fill in
+		// TODO Implement SwapList to implement this portion
 	}
 
 	/**
@@ -80,7 +93,8 @@ public abstract class AbstractTestPlan {
 	 * @return The TestCase of the given index
 	 */
 	public TestCase getTestCase(int idx) {
-		// TODO fill in
+		// TODO return testCases.get(idx);
+		// TODO Must implement SwapList for this to work
 		return null;
 	}
 
@@ -90,6 +104,12 @@ public abstract class AbstractTestPlan {
 	 * @return The number of failing tests in the list of TestPlans as an integer
 	 */
 	public int getNumberOfFailingTests() {
+		int failCount = 0;
+		for(int i = 0; i < testCases.size(); i++) {
+			if(!testCases.get(i).isTestCasePassing) { 
+				failCount++;
+			}
+		}
 		return 0;
 		// TODO fill in
 	}
