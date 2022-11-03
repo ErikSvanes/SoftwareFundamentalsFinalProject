@@ -66,7 +66,7 @@ public class SortedList<E> implements ISortedList<E> {
 			try {
 				temp = (TestCase) current.next.data;
 			} catch (Exception e) {
-				System.out.println("Could not cast " + temp.getTestCaseId());
+				System.out.println("Could not cast " + temp);
 				return;
 			}
 			if (!temp.isTestCasePassing()) {
