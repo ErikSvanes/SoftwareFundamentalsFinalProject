@@ -13,15 +13,15 @@
 
 ## Process Points 2 <br>
 ***_Required Tasks to Complete PP2_***
-- **Implement Log.java:** TBD **Due:** TBD **Status:** Pending <br>
-- **Test Log.java:** TBD **Due:** TBD **Status:** Pending <br>
-- **Implement SortedList.java:** TBD **Due:** TBD **Status:** Pending <br>
+- **Implement Log.java:** Will **Due:** 11/4/22 **Status:** Began 11/3/22 <br>
+- **Test Log.java:** Will **Due:** 11/5/22 **Status:** Began 11/3/22 <br>
+- **Implement SortedList.java:** Erik **Due:** 11/8/22 **Status:** Began 11/2/22 <br>
 - **Test SortedList.java:** TBD **Due:** TBD **Status:** Pending <br>
-- **Implement SwapList.java:** TBD **Due:** TBD **Status:** Pending <br>
+- **Implement SwapList.java:** Erik **Due:** 11/7/22 **Status:** Began 11/2/22 <br>
 - **Test SwapList.java:** TBD **Due:** TBD **Status:** Pending <br>
-- **Implement AbstractTestPlan.java:** TBD **Due:** TBD **Status:** Pending <br>
+- **Implement AbstractTestPlan.java:** Will **Due:** 11/9/22 **Status:** Began 11/3/22 <br>
 - **Implement FailingTestList.java:** TBD **Due:** TBD **Status:** Pending <br>
-- **Implement TestPlan.java:** TBD **Due:** TBD **Status:** Pending <br>
+- **Implement TestPlan.java:** Will **Due:** 11/8/22 **Status:** Began 11/3/22 <br>
 - **Test the different TestPlans:** TBD **Due:** TBD **Status:** Pending <br>
 - **Implement TestCase.java:** TBD **Due:** TBD **Status:** Pending <br>
 - **Test TestCase.java:** TBD **Due:** TBD **Status:** Pending <br>
