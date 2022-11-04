@@ -20,6 +20,7 @@ public class Log<E> implements ILog<E> {
 	@SuppressWarnings("unchecked")
 	public Log() {
 		log = (E[]) new Log[INIT_CAPACITY];
+		size = 0;
 	}
 
 	@Override
@@ -30,12 +31,14 @@ public class Log<E> implements ILog<E> {
 		if (size == log.length) {
 			growArray();
 		}
-		if (size == 0) {
-			log[0] = element;
+		if(size == 0) {
+			log[0] = (E) element;
+		} else {
+		log[size] = (E) element;
 		}
 		
 		// TODO fill in
-		
+		size++;
 	}
 
 	@Override
@@ -48,8 +51,7 @@ public class Log<E> implements ILog<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@SuppressWarnings("unchecked")

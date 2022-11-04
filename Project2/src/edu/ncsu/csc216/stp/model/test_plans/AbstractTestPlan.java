@@ -70,8 +70,8 @@ public abstract class AbstractTestPlan {
 	 * @param t TestCase object being added to the TestPlan
 	 */
 	public void addTestCase(TestCase t) {
-		// TODO testCases.add(t);
-		// TODO Must implement SwapList to implement correctly
+		testCases.add(t);
+		// TODO Test this works
 	}
 
 	/**
@@ -81,9 +81,10 @@ public abstract class AbstractTestPlan {
 	 * @return the TestCase which was removed
 	 */
 	public TestCase removeTestCase(int idx) {
-		// TODO testCases.remove(idx);
-		return null;
-		// TODO Implement SwapList to implement this portion
+		TestCase removed = testCases.get(idx);
+		testCases.remove(idx);
+		return removed;
+		// TODO Test this works
 	}
 
 	/**
@@ -93,9 +94,8 @@ public abstract class AbstractTestPlan {
 	 * @return The TestCase of the given index
 	 */
 	public TestCase getTestCase(int idx) {
-		// TODO return testCases.get(idx);
-		// TODO Must implement SwapList for this to work
-		return null;
+		return testCases.get(idx);
+		// TODO Test this works
 	}
 
 	/**
@@ -106,12 +106,12 @@ public abstract class AbstractTestPlan {
 	public int getNumberOfFailingTests() {
 		int failCount = 0;
 		for(int i = 0; i < testCases.size(); i++) {
-			if(!testCases.get(i).isTestCasePassing) { 
+			if(!testCases.get(i).isTestCasePassing()) { 
 				failCount++;
 			}
 		}
-		return 0;
-		// TODO fill in
+		return failCount;
+		// TODO Test this works
 	}
 
 	/**

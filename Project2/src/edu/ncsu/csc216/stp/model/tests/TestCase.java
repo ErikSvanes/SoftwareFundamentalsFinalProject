@@ -19,6 +19,8 @@ public class TestCase {
 	private String expectedResults;
 	/** TestPlan of the TestCase as a TestPlan object */
 	private TestPlan testPlan;
+	/** Boolean for whether or not the TestCase is passing */
+	private boolean isPassing;
 
 	/**
 	 * Constructor of a TestCase given four fields, the TestCase ID, Test Type, Test
@@ -116,6 +118,7 @@ public class TestCase {
 	 * @param actualResults Actual Results of the TestCase
 	 */
 	public void addTestResult(boolean passing, String actualResults) {
+		isPassing = passing;
 		// TODO fill in
 	}
 
@@ -125,7 +128,7 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		return false;
+		return isPassing;
 		// TODO fill in
 	}
 
