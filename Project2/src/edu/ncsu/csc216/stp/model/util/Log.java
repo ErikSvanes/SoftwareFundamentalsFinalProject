@@ -19,7 +19,7 @@ public class Log<E> implements ILog<E> {
 	 */
 	@SuppressWarnings("unchecked")
 	public Log() {
-		log = (E[]) new Log[INIT_CAPACITY];
+		log = (E[]) new Object[INIT_CAPACITY];
 		size = 0;
 	}
 

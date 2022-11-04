@@ -37,5 +37,23 @@ class LogTest {
 		assertThrows(IndexOutOfBoundsException.class, () -> l.get(5));
 		assertThrows(IndexOutOfBoundsException.class, () -> l.get(-1));
 	}
+	
+	@Test
+	void testLogCapacity() {
+		Log<Integer> l = new Log<Integer>();
+		for(int i = 0; i < 30; i++) {
+			l.add(i);
+		}
+		for(int i = 0; i < 30; i++) {
+			assertEquals(l.get(i), i);
+		}
+		assertEquals(l.size(), 30);
+	}
+	
+	@Test
+	void testAddNull() {
+		Log<String> l = new Log<String>();
+		assertThrows(NullPointerException.class, () -> l.add(null));
+	}
 
 }
