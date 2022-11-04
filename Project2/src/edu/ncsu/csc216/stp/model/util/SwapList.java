@@ -7,7 +7,7 @@ package edu.ncsu.csc216.stp.model.util;
  *
  * @param <E> Generic elements which can be stored in this type of List
  */
-public class SwapList<E> implements ISwapList {
+public class SwapList<E> implements ISwapList<E> {
 	/** Initial size of the array */
 	private static final int INIT_SIZE = 10;
 	/** The array */
@@ -78,16 +78,38 @@ public class SwapList<E> implements ISwapList {
 		swapElements(idx, idx + 1);
 	}
 
+	/**
+	 * Method that moves the element at the specified valid index to the front of
+	 * the list.
+	 * 
+	 * @param idx the index of the specified element
+	 */
 	@Override
 	public void moveToFront(int idx) {
-		// TODO Auto-generated method stub
-
+		if (idx < 0 || idx >= size)
+			throw new IndexOutOfBoundsException("Invalid index.");
+		E movedElement = list[idx];
+		for (int i = idx; i > 0; i--) {
+			list[i] = list[i - 1];
+		}
+		list[0] = movedElement;
 	}
 
+	/**
+	 * Method that moves the element at the specified valid index to the back of the
+	 * list.
+	 * 
+	 * @param idx the index of the specified element
+	 */
 	@Override
 	public void moveToBack(int idx) {
-		// TODO Auto-generated method stub
-
+		if (idx < 0 || idx >= size)
+			throw new IndexOutOfBoundsException("Invalid index.");
+		E movedElement = list[idx];
+		for (int i = idx; i > size; i++) {
+			list[i] = list[i + 1];
+		}
+		list[size - 1] = movedElement;
 	}
 
 	/**
