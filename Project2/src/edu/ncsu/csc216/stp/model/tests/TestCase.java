@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.stp.model.tests;
 
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
+import edu.ncsu.csc216.stp.model.util.ILog;
+import edu.ncsu.csc216.stp.model.util.Log;
 
 /**
  * Concrete Class for creating, modifying, and storing test cases, which make up
@@ -21,6 +23,8 @@ public class TestCase {
 	private TestPlan testPlan;
 	/** Boolean for whether or not the TestCase is passing */
 	private boolean isPassing;
+	/** Log of the TestResults for a given TestCase */
+	private ILog<TestResult> testResults;
 
 	/**
 	 * Constructor of a TestCase given four fields, the TestCase ID, Test Type, Test
@@ -36,6 +40,7 @@ public class TestCase {
 		setTestType(testType);
 		setTestDescription(testDescription);
 		setExpectedResults(expectedResults);
+		testResults = new Log<TestResult>();
 	}
 
 	/**
@@ -118,7 +123,8 @@ public class TestCase {
 	 * @param actualResults Actual Results of the TestCase
 	 */
 	public void addTestResult(boolean passing, String actualResults) {
-		isPassing = passing;
+		TestResult newResult = new TestResult(passing, actualResults);
+		testResults.add(newResult);
 		// TODO fill in
 	}
 
@@ -128,8 +134,8 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		return isPassing;
-		// TODO fill in
+		return(testResults.get(testResults.size() - 1).isPassing());
+		// TODO Test this works
 	}
 
 	/**
@@ -138,8 +144,14 @@ public class TestCase {
 	 * @return The status of the TestCase as a String
 	 */
 	public String getStatus() {
-		return null;
-		// TODO fill in
+		if(this.isPassing) {
+			return TestResult.PASS;
+		} else if (!this.isPassing) {
+			return TestResult.FAIL;
+		} else {
+			return null;
+		}
+		// TODO Test if this is correct (Not sure about the final else statement)
 	}
 
 	/**
@@ -148,8 +160,12 @@ public class TestCase {
 	 * @return ActualResultsLog of the TestCase as a String
 	 */
 	public String getActualResultsLog() {
-		return null;
-		// TODO fill in
+		String out = new String();
+		for(int i = 0; i < testResults.size(); i++) {
+			out = out + "-" + testResults.get(i) + "\n";
+		}
+		return out;
+		// TODO Test this works
 	}
 
 	/**
