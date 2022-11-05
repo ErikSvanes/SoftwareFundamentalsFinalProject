@@ -25,6 +25,8 @@
 - **Test the different TestPlans:** TBD **Due:** TBD **Status:** Pending <br>
 - **Implement TestCase.java:** Will **Due:** 11/5/22 **Status:** Completed 11/4/22 <br>
 - **Test TestCase.java:** Will **Due:** 11/5/22 **Status:** Completed 11/4/22 <br>
+- **Implement TestResult.java:** Will **Due:** 11/4/22 **Status:** Completed 11/3/22 <br>
+- **Test TestResult.java:** Will **Due:** 11/4/22 **Status:** Completed 11/3/22 <br>
 - **Implement TestPlanManager.java:** Will **Due:** 11/11/22 **Status:** Began 11/3/22 <br>
 - **Test TestPlanManager.java:** TBD **Due:** TBD **Status:** Pending <br>
 - **Implement TestPlanReader.java:** TBD **Due:** TBD **Status:** Pending <br>
