@@ -12,7 +12,7 @@
 
 ## Process Points 2 <br>
 ***_Required Tasks to Complete PP2_***
-- **Implement Log.java:** Will **Due:** 11/4/22 **Status:** Began 11/3/22 <br>
+- **Implement Log.java:** Will **Due:** 11/4/22 **Status:** Began 11/3/22 ✓<br>
 - **Test Log.java:** Will **Due:** 11/4/22 **Status:** Completed on 11/4/22 <br>
 - **Test Log.java:** Will **Due:** 11/5/22 **Status:** Completed on 11/4/22 <br>
 - **Implement SortedList.java:** Erik **Due:** 11/8/22 **Status:** Began 11/2/22 <br>
