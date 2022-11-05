@@ -125,7 +125,7 @@ public class TestCase {
 	public void addTestResult(boolean passing, String actualResults) {
 		TestResult newResult = new TestResult(passing, actualResults);
 		testResults.add(newResult);
-		// TODO fill in
+		isPassing = passing;
 	}
 
 	/**
@@ -134,8 +134,7 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		return(testResults.get(testResults.size() - 1).isPassing());
-		// TODO Test this works
+		return (testResults.get(testResults.size() - 1).isPassing());
 	}
 
 	/**
@@ -144,14 +143,11 @@ public class TestCase {
 	 * @return The status of the TestCase as a String
 	 */
 	public String getStatus() {
-		if(this.isPassing) {
+		if (this.isPassing) {
 			return TestResult.PASS;
-		} else if (!this.isPassing) {
-			return TestResult.FAIL;
 		} else {
-			return null;
+			return TestResult.FAIL;
 		}
-		// TODO Test if this is correct (Not sure about the final else statement)
 	}
 
 	/**
@@ -161,11 +157,19 @@ public class TestCase {
 	 */
 	public String getActualResultsLog() {
 		String out = new String();
-		for(int i = 0; i < testResults.size(); i++) {
-			out = out + "-" + testResults.get(i) + "\n";
+		String passFail = new String();
+		for (int i = 0; i < testResults.size(); i++) {
+			if (testResults.get(i).isPassing()) {
+				passFail = TestResult.PASS;
+			} else if (!testResults.get(i).isPassing()) {
+				passFail = TestResult.FAIL;
+			}
+			if (i != 0) {
+				out += "\n";
+			}
+			out = out + "-" + passFail + ": " + testResults.get(i).getActualResults();
 		}
 		return out;
-		// TODO Test this works
 	}
 
 	/**
@@ -187,16 +191,17 @@ public class TestCase {
 	}
 
 	/**
-	 * Method for getting the String of the TestCase, which consists of whether it is passing or not, followed by the actual results
+	 * Method for getting the String of the TestCase, which consists of whether it
+	 * is passing or not, followed by the actual results
 	 * 
 	 * @return String of the TestCase
 	 */
 	public String toString() {
-		if (this.isTestCasePassing()) {
-			return TestResult.PASS + ": " + ""; // TODO Add actual results
-		} else  {
-			return TestResult.FAIL + ": " + ""; // TODO Add actual results
-		}
+		String out = new String();
+		out = out + "# " + this.testCaseId + "," + this.testType + "\n";
+		out = out + "* " + this.getTestDescription() + "\n* " + this.getExpectedResults() + "\n";
+		out = out + this.getActualResultsLog();
+		return out;
 	}
 
 }

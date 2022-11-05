@@ -23,7 +23,9 @@ public class TestResult {
 	 * @param actualResults String of the actual results of the TestResult
 	 */
 	public TestResult(boolean passing, String actualResults) {
-		// TODO fill in
+		setActualResults(actualResults);
+		setPassing(passing);
+		// TODO Test this works
 	}
 
 	/**
