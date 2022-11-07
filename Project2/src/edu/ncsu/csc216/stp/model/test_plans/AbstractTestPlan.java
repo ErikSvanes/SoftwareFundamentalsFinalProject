@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.stp.model.test_plans;
 
 import edu.ncsu.csc216.stp.model.tests.TestCase;
+import edu.ncsu.csc216.stp.model.tests.TestResult;
 import edu.ncsu.csc216.stp.model.util.ISwapList;
 import edu.ncsu.csc216.stp.model.util.SwapList;
 
@@ -70,8 +71,8 @@ public abstract class AbstractTestPlan {
 	 * @param t TestCase object being added to the TestPlan
 	 */
 	public void addTestCase(TestCase t) {
-		// TODO testCases.add(t);
-		// TODO Must implement SwapList to implement correctly
+		testCases.add(t);
+		// TODO Test this works
 	}
 
 	/**
@@ -81,9 +82,10 @@ public abstract class AbstractTestPlan {
 	 * @return the TestCase which was removed
 	 */
 	public TestCase removeTestCase(int idx) {
-		// TODO testCases.remove(idx);
-		return null;
-		// TODO Implement SwapList to implement this portion
+		TestCase removed = testCases.get(idx);
+		testCases.remove(idx);
+		return removed;
+		// TODO Test this works
 	}
 
 	/**
@@ -93,9 +95,8 @@ public abstract class AbstractTestPlan {
 	 * @return The TestCase of the given index
 	 */
 	public TestCase getTestCase(int idx) {
-		// TODO return testCases.get(idx);
-		// TODO Must implement SwapList for this to work
-		return null;
+		return testCases.get(idx);
+		// TODO Test this works
 	}
 
 	/**
@@ -110,8 +111,8 @@ public abstract class AbstractTestPlan {
 				failCount++;
 			}
 		}
-		return 0;
-		// TODO fill in
+		return failCount;
+		// TODO Test this works
 	}
 
 	/**
@@ -123,7 +124,9 @@ public abstract class AbstractTestPlan {
 	 * @param actualResults String of the actual results
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
-		// TODO fill in
+		TestResult newTestResult = new TestResult(passing, actualResults);
+		//testCases.add(idx, newResult);
+		// TODO Need to fix, SwapList doesnt have an index option for add
 	}
 
 	/**
@@ -133,10 +136,7 @@ public abstract class AbstractTestPlan {
 	 * @return A 2D array of Strings to the User of the TestCases and their
 	 *         corresponding important fields
 	 */
-	public String[][] getTestCasesAsArray() {
-		return null;
-		// TODO fill in
-	}
+	public abstract String[][] getTestCasesAsArray();
 
 	// TODO add hashCode and equals methods!
 

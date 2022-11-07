@@ -1,6 +1,8 @@
 package edu.ncsu.csc216.stp.model.tests;
 
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
+import edu.ncsu.csc216.stp.model.util.ILog;
+import edu.ncsu.csc216.stp.model.util.Log;
 
 /**
  * Concrete Class for creating, modifying, and storing test cases, which make up
@@ -19,6 +21,10 @@ public class TestCase {
 	private String expectedResults;
 	/** TestPlan of the TestCase as a TestPlan object */
 	private TestPlan testPlan;
+	/** Boolean for whether or not the TestCase is passing */
+	private boolean isPassing;
+	/** Log of the TestResults for a given TestCase */
+	private ILog<TestResult> testResults;
 
 	/**
 	 * Constructor of a TestCase given four fields, the TestCase ID, Test Type, Test
@@ -34,6 +40,7 @@ public class TestCase {
 		setTestType(testType);
 		setTestDescription(testDescription);
 		setExpectedResults(expectedResults);
+		testResults = new Log<TestResult>();
 	}
 
 	/**
@@ -116,7 +123,9 @@ public class TestCase {
 	 * @param actualResults Actual Results of the TestCase
 	 */
 	public void addTestResult(boolean passing, String actualResults) {
-		// TODO fill in
+		TestResult newResult = new TestResult(passing, actualResults);
+		testResults.add(newResult);
+		isPassing = passing;
 	}
 
 	/**
@@ -125,8 +134,7 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		return false;
-		// TODO fill in
+		return (testResults.get(testResults.size() - 1).isPassing());
 	}
 
 	/**
@@ -135,8 +143,11 @@ public class TestCase {
 	 * @return The status of the TestCase as a String
 	 */
 	public String getStatus() {
-		return null;
-		// TODO fill in
+		if (this.isPassing) {
+			return TestResult.PASS;
+		} else {
+			return TestResult.FAIL;
+		}
 	}
 
 	/**
@@ -145,8 +156,20 @@ public class TestCase {
 	 * @return ActualResultsLog of the TestCase as a String
 	 */
 	public String getActualResultsLog() {
-		return null;
-		// TODO fill in
+		String out = new String();
+		String passFail = new String();
+		for (int i = 0; i < testResults.size(); i++) {
+			if (testResults.get(i).isPassing()) {
+				passFail = TestResult.PASS;
+			} else if (!testResults.get(i).isPassing()) {
+				passFail = TestResult.FAIL;
+			}
+			if (i != 0) {
+				out += "\n";
+			}
+			out = out + "-" + passFail + ": " + testResults.get(i).getActualResults();
+		}
+		return out;
 	}
 
 	/**
@@ -168,16 +191,17 @@ public class TestCase {
 	}
 
 	/**
-	 * Method for getting the String of the TestCase, which consists of whether it is passing or not, followed by the actual results
+	 * Method for getting the String of the TestCase, which consists of whether it
+	 * is passing or not, followed by the actual results
 	 * 
 	 * @return String of the TestCase
 	 */
 	public String toString() {
-		if (this.isTestCasePassing()) {
-			return TestResult.PASS + ": " + ""; // TODO Add actual results
-		} else  {
-			return TestResult.FAIL + ": " + ""; // TODO Add actual results
-		}
+		String out = new String();
+		out = out + "# " + this.testCaseId + "," + this.testType + "\n";
+		out = out + "* " + this.getTestDescription() + "\n* " + this.getExpectedResults() + "\n";
+		out = out + this.getActualResultsLog();
+		return out;
 	}
 
 }
