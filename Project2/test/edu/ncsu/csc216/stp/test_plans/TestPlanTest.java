@@ -19,7 +19,6 @@ class TestPlanTest {
 	
 	@Test
 	void testInvalidTestPlan() {
-		assertThrows(IllegalArgumentException.class,)
 	}
 
 }
