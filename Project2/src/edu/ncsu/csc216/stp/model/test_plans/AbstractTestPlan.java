@@ -51,7 +51,7 @@ public abstract class AbstractTestPlan {
 	 * @return String of the TestPlan's name
 	 */
 	public String getTestPlanName() {
-		return testPlanName;
+		return this.testPlanName;
 	}
 
 	/**

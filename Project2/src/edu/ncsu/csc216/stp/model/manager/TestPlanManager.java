@@ -26,7 +26,7 @@ public class TestPlanManager {
 	/** List of failing test cases */
 	FailingTestList failList;
 	/** AbstractTestPlan for the Current Test Plan the User has selected */
-	AbstractTestPlan currentTestPlan = null;
+	AbstractTestPlan currentTestPlan;
 
 	/**
 	 * Constructor for the TestPlanManager singleton method
@@ -34,8 +34,9 @@ public class TestPlanManager {
 	public TestPlanManager() {
 		testPlans = new SortedList<TestPlan>(); // Initialize the testPlan
 		failList = new FailingTestList(); // Initialize the list of failing tests
-		currentTestPlan = failList; // Set the list of failing test cases to the current Test Plan
+		setCurrentTestPlan(failList.getTestPlanName());
 		isChanged = false; // Since this has just been constructed, the project has yet to be changed
+		System.out.println(failList.getTestPlanName());
 		// TODO fill in
 	}
 
@@ -83,6 +84,8 @@ public class TestPlanManager {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 		}
+		testPlans.add(new TestPlan(testPlanName));
+		currentTestPlan = testPlans.get(testPlans.size() - 1);
 
 		// TODO Actually add the TestPlan to the list of TestPlans
 		isChanged = true;
