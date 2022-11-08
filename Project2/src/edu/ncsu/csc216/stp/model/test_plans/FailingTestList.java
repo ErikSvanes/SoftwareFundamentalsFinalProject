@@ -50,7 +50,7 @@ public class FailingTestList extends AbstractTestPlan {
 		if (testPlanName != FAILING_TEST_LIST_NAME) {
 			throw new IllegalArgumentException("The Failing Tests list cannot be edited");
 		} else {
-			// TODO Assign the testPlan name to the given value
+			
 		}
 		// TODO fill in
 	}

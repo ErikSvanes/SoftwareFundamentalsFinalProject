@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.stp.model.io;
 
 import java.io.File;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
@@ -32,7 +33,12 @@ public class TestPlanReader {
 	 */
 	public static ISortedList<TestPlan> readTestPlansFile(File f) {
 		try {
-			// TODO fill in
+			Scanner scan = new Scanner(f);
+			String file = new String();
+			while(scan.hasNext()) {
+				file = file + scan.next();
+			}
+			scan.close();
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Unable to load file");
 		}

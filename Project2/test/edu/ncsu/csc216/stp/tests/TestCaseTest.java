@@ -24,9 +24,9 @@ class TestCaseTest {
 	void testIsTestCasePassing() {
 		TestCase tc = VALID_TEST_CASE;
 		tc.addTestResult(false, "erik messed it up :/");
-		assertEquals(tc.isTestCasePassing(), false);
+		assertFalse(tc.isTestCasePassing());
 		tc.addTestResult(true, "erik fixed it with his amazingness, thankyou erik <3");
-		assertEquals(tc.isTestCasePassing(), true);
+		assertTrue(tc.isTestCasePassing());
 	}
 	
 	@Test

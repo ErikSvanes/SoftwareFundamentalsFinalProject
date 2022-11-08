@@ -16,10 +16,10 @@ class TestResultTest {
 	void testNewTestResult() {
 		TestResult tr = PASSING_TEST_RESULT;
 		assertEquals(tr.getActualResults(), "erik made it work");
-		assertEquals(tr.isPassing(), true);
+		assertTrue(tr.isPassing());
 		
 		TestResult tr2 = FAILING_TEST_RESULT;
 		assertEquals(tr2.getActualResults(), "erik broked it");
-		assertEquals(tr2.isPassing(), false);
+		assertFalse(tr2.isPassing());
 	}
 }
