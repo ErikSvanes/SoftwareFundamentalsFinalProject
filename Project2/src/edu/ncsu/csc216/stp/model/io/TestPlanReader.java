@@ -38,6 +38,7 @@ public class TestPlanReader {
 			while(scan.hasNext()) {
 				file = file + scan.next();
 			}
+			processTestPlan(file);
 			scan.close();
 		} catch (Exception e) {
 			throw new IllegalArgumentException("Unable to load file");
@@ -52,7 +53,11 @@ public class TestPlanReader {
 	 * @return The String read in as a TestPlan object
 	 */
 	private static TestPlan processTestPlan(String testPlan) {
-		return null;
+		TestPlan p = new TestPlan("placeholder");
+		
+		TestCase tc = processTest(p, testPlan);
+		p.addTestCase(tc);
+		return p;
 	}
 
 	/**

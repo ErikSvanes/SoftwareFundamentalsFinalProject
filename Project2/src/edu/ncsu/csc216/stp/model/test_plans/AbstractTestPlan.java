@@ -59,7 +59,6 @@ public abstract class AbstractTestPlan {
 	 * 
 	 * @return ISwapList of TestCases
 	 */
-	@SuppressWarnings("unchecked")
 	public ISwapList<TestCase> getTestCases() {
 		return testCases;
 		// TODO Test this is working properly
