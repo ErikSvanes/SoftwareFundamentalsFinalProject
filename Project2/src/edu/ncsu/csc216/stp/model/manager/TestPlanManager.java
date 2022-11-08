@@ -108,7 +108,9 @@ public class TestPlanManager {
 	 * Updates the list of failing tests
 	 */
 	private void getFailingTests() {
-		// TODO fill in
+		FailingTestList fail = new FailingTestList();
+		fail.addTestCase(null);
+		// TODO Actually implement this
 	}
 
 	/**
@@ -135,6 +137,9 @@ public class TestPlanManager {
 	 * @return The currently selected TestPlan as an AbstractTestPlan
 	 */
 	public AbstractTestPlan getCurrentTestPlan() {
+		if (currentTestPlan.equals(failList)) {
+			getFailingTests(); // TODO This probably isnt right, fix later
+		}
 		return currentTestPlan;
 		// TODO Test this is correct
 	}
@@ -185,7 +190,8 @@ public class TestPlanManager {
 		} else if (currentTestPlan instanceof TestPlan) {
 			currentTestPlan.addTestCase(t);
 			if (!t.isTestCasePassing()) {
-				// TODO update the list of failing tests
+				failList.addTestCase(t);
+				// TODO Test this works
 			}
 		}
 		// TODO fill in

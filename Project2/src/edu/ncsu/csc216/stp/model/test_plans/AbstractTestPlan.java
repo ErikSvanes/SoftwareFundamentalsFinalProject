@@ -124,7 +124,7 @@ public abstract class AbstractTestPlan {
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
 		TestResult newTestResult = new TestResult(passing, actualResults);
-		//testCases.add(idx, newResult);
+		testCases.add(newTestResult);
 		// TODO Need to fix, SwapList doesnt have an index option for add
 	}
 
