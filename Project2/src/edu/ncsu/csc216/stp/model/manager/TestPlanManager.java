@@ -109,8 +109,8 @@ public class TestPlanManager {
 	 */
 	private void getFailingTests() {
 		FailingTestList fail = new FailingTestList();
-		fail.addTestCase(null);
-		// TODO Actually implement this
+		fail.clearTests();
+		// TODO I dont know what to do here, fix later
 	}
 
 	/**
