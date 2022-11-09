@@ -29,7 +29,7 @@ public class SwapList<E> implements ISwapList<E> {
 			throw new NullPointerException("Cannot add null element.");
 		if (size == list.length)
 			growArray();
-		list[size - 1] = (E) element;
+		list[size] = (E) element;
 		size++;
 	}
 
@@ -106,7 +106,7 @@ public class SwapList<E> implements ISwapList<E> {
 		if (idx < 0 || idx >= size)
 			throw new IndexOutOfBoundsException("Invalid index.");
 		E movedElement = list[idx];
-		for (int i = idx; i > size; i++) {
+		for (int i = idx; i < size; i++) {
 			list[i] = list[i + 1];
 		}
 		list[size - 1] = movedElement;
