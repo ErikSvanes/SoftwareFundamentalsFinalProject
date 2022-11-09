@@ -28,6 +28,10 @@ class SortedListTest {
 	@Test
 	void testAddElement() {
 		SortedList<TestCase> list = new SortedList<TestCase>();
+		VALID_TESTCASE1.addTestResult(true, "bb");
+		VALID_TESTCASE2.addTestResult(false, "it messed up :(");
+		VALID_TESTCASE3.addTestResult(true, "zz");
+		VALID_TESTCASE4.addTestResult(false, "aaa");
 		list.add(VALID_TESTCASE2);
 		list.add(VALID_TESTCASE4);
 		list.add(VALID_TESTCASE3);
@@ -36,10 +40,10 @@ class SortedListTest {
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getTestCaseId());
 		}
-		assertEquals(list.get(0).getTestCaseId(), "test1");
-		assertEquals(list.get(1).getTestCaseId(), "test2");
-		assertEquals(list.get(2).getTestCaseId(), "test3");
-		assertEquals(list.get(3).getTestCaseId(), "test4");
+		assertEquals(list.get(0).getTestCaseId(), "test2");
+		assertEquals(list.get(1).getTestCaseId(), "test4");
+		assertEquals(list.get(2).getTestCaseId(), "test1");
+		assertEquals(list.get(3).getTestCaseId(), "test3");
 	}
 
 }

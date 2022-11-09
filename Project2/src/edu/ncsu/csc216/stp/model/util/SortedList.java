@@ -26,7 +26,8 @@ public class SortedList<E> implements ISortedList<E> {
 	}
 
 	/**
-	 * This method adds the Test Case given to the parameter into a sorted spot in the list
+	 * This method adds the Test Case given to the parameter into a sorted spot in
+	 * the list
 	 * 
 	 * @param element the Test Case to add to the list
 	 */
@@ -62,6 +63,7 @@ public class SortedList<E> implements ISortedList<E> {
 		}
 		current = front;
 		int firstPassingTS = -1;
+		int firstFailingTS = -1;
 		while (current != null) {
 			try {
 				temp = (TestCase) current.data;
@@ -69,48 +71,48 @@ public class SortedList<E> implements ISortedList<E> {
 				System.out.println("Could not cast " + current.data);
 				return;
 			}
-			if (!temp.isTestCasePassing()) {
+			if (temp.isTestCasePassing()) {
 				firstPassingTS++;
-			} else if (temp.isTestCasePassing()) {
-				onlyFailed = false;
 			} else {
-				break;
+				firstFailingTS++;
 			}
 			current = current.next;
 		}
 		current = front;
-		// if the list only is passing test cases
-		if (firstPassingTS == -1) {
-			current = new ListNode(element);
-			size++;
-			System.out.println(tsAdd.getTestCaseId());
+		// if the list only is passing test cases or only failing test cases
+		if (firstFailingTS == -1 || firstPassingTS == -1) {
+			addOnly(element, tsAdd);
 			return;
 		}
-		// if the list only is failed test cases
-		if (onlyFailed) {
-			// if size is 1
-			if (size == 1) {
-				temp = (TestCase) current.data;
-				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
-					front = new ListNode(element, front);
-					size++;
-					return;
-				}
-				else {
-					current.next = new ListNode(element);
-					size++;
-					return;
-				}
-			}
+		// if its not only failing or passing test cases
+		addElse(element, tsAdd);
+	}
+
+	/**
+	 * Method that helps sort the list when it is a mix of pass and fail
+	 * 
+	 * @param element the element to add to the list
+	 * @param tsAdd the element but as a test case
+	 */
+	private void addElse(E element, TestCase tsAdd) {
+		ListNode current = front;
+		TestCase temp = (TestCase) current.data;
+		int idx = -1;
+		// if the test case to add is passing
+		if (tsAdd.isTestCasePassing()) {
+			current = front;
+			// find the index of the first passing test
+			temp = (TestCase) front.data;
 			for (int i = 0; i < size - 1; i++) {
-				// if it should be the first element
-				temp = (TestCase) current.data;
-				if (i == 0 && tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
-//					ListNode savedReference = front;
-					front = new ListNode(element, front);
-					size++;
-					return;
+				temp = (TestCase) current.next.data;
+				if (temp.isTestCasePassing()) {
+					idx = i;
+					break;
 				}
+				current = current.next;
+			}
+			// find the spot to add it into
+			for (int i = idx; i < size - 1; i++) {
 				temp = (TestCase) current.next.data;
 				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
 					ListNode savedReference = current.next;
@@ -121,25 +123,107 @@ public class SortedList<E> implements ISortedList<E> {
 				}
 				current = current.next;
 			}
-			// ^^ temp fix until we can sort the test cases using compare to
+			// if its the last element
 			current.next = new ListNode(element);
 			size++;
-			System.out.println(tsAdd.getTestCaseId());
+		}
+		// if the test to add is failing
+		else {
+			current = front;
+			// if it goes in the front
+			temp = (TestCase) current.data;
+			if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+				front = new ListNode(element, front);
+				size++;
+				return;
+			}
+			// if it doesn't go in front
+			for (int i = 0; i < size - 1; i++) {
+				temp = (TestCase) current.next.data;
+				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0 ||
+						temp.isTestCasePassing()) {
+					ListNode savedReference = current.next;
+					current.next = new ListNode(element);
+					current.next.next = savedReference;
+					size++;
+					return;
+				}
+				current = current.next;
+			}
+			
+		}
+	}
+	
+	/**
+	 * Method that sorts elements into a list of either only failing or only passing
+	 * test cases
+	 * 
+	 * @param element the element to add to the list
+	 * @param tsAdd the element casted to a test case
+	 */
+	private void addOnly(E element, TestCase tsAdd) {
+		ListNode current = front;
+		TestCase temp = (TestCase) current.data;
+		// if adding opposite passing value to list of only one kind
+		if (temp.isTestCasePassing() && !tsAdd.isTestCasePassing()) {
+			front = new ListNode(element, front);
+			size++;
 			return;
 		}
-		// if its not only failed test cases
-		for (int i = 0; i < firstPassingTS + 1; i++) {
+		else if (!temp.isTestCasePassing() && tsAdd.isTestCasePassing()) {
+			while (current.next != null) {
+				current = current.next;
+			}
+			current.next = new ListNode(element);
+			size++;
+			return;
+		}
+		// if size is one
+		if (size == 1) {
+			temp = (TestCase) current.data;
+			// before
+			if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+				front = new ListNode(element, front);
+				size++;
+				return;
+			}
+			// after
+			else {
+				current.next = new ListNode(element);
+				size++;
+				return;
+			}
+		}
+		// if it should be the first element
+		temp = (TestCase) front.data;
+		if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+			front = new ListNode(element, front);
+			size++;
+			return;
+		}
+		// if its not the first element
+		current = front;
+		for (int i = 0; i < size - 1; i++) {
+			temp = (TestCase) current.next.data;
+			if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0) {
+				ListNode savedReference = current.next;
+				current.next = new ListNode(element);
+				current.next.next = savedReference;
+				size++;
+				return;
+			}
 			current = current.next;
 		}
-		ListNode savedReference = current.next;
+		// if its the last element
 		current.next = new ListNode(element);
-		current.next.next = savedReference;
 		size++;
-		System.out.println(tsAdd.getTestCaseId());
+		// System.out.println(tsAdd.getTestCaseId());
+		return;
 	}
 
 	/**
-	 * Method to remove an element at a given index. Returns the removed element. 
+	 * Method to remove an element at a given index. Returns the removed element.
+	 * 
 	 * @param idx the index to remove
 	 * @return the data of the removed element
 	 */
@@ -191,7 +275,7 @@ public class SortedList<E> implements ISortedList<E> {
 		}
 //		System.out.println(((TestCase) current.data).getTestCaseId());
 		return (E) current.data;
-		
+
 //		if (idx == 0 && size == 0) {
 //			return null;
 //		}
