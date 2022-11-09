@@ -45,5 +45,73 @@ class SortedListTest {
 		assertEquals(list.get(2).getTestCaseId(), "test1");
 		assertEquals(list.get(3).getTestCaseId(), "test3");
 	}
+	
+	@Test
+	void testAddOnly() {
+		SortedList<TestCase> list = new SortedList<TestCase>();
+		VALID_TESTCASE1.addTestResult(true, "bb");
+		VALID_TESTCASE2.addTestResult(false, "it messed up :(");
+		VALID_TESTCASE3.addTestResult(true, "zz");
+		VALID_TESTCASE4.addTestResult(false, "aaa");
+		list.add(VALID_TESTCASE1);
+		list.add(VALID_TESTCASE2);
+		assertEquals("test2", list.get(0).getTestCaseId());
+		assertEquals("test1", list.get(1).getTestCaseId());
+		// reset
+		list = new SortedList<TestCase>();
+		VALID_TESTCASE2.addTestResult(true, "passed!");
+		VALID_TESTCASE4.addTestResult(true, "passed!");
+		list.add(VALID_TESTCASE2);
+		list.add(VALID_TESTCASE4);
+		list.add(VALID_TESTCASE3);
+		list.add(VALID_TESTCASE1);
+		assertEquals("test1", list.get(0).getTestCaseId());
+		assertEquals("test2", list.get(1).getTestCaseId());
+		assertEquals("test3", list.get(2).getTestCaseId());
+		assertEquals("test4", list.get(3).getTestCaseId());
+	}
+	
+	@Test
+	void testAddElse() {
+		SortedList<TestCase> list = new SortedList<TestCase>();
+		VALID_TESTCASE1.addTestResult(true, "bb");
+		VALID_TESTCASE2.addTestResult(false, "it messed up :(");
+		VALID_TESTCASE3.addTestResult(true, "zz");
+		VALID_TESTCASE4.addTestResult(false, "aaa");
+		list.add(VALID_TESTCASE2);
+		list.add(VALID_TESTCASE1);
+		list.add(VALID_TESTCASE3);
+		assertEquals("test2", list.get(0).getTestCaseId());
+		assertEquals("test1", list.get(1).getTestCaseId());
+		assertEquals("test3", list.get(2).getTestCaseId());
+		// reset
+		list = new SortedList<TestCase>();
+		VALID_TESTCASE1.addTestResult(false, "passed!");
+		list.add(VALID_TESTCASE2);
+		list.add(VALID_TESTCASE3);
+		list.add(VALID_TESTCASE1);
+		list.add(VALID_TESTCASE4);
+		assertEquals("test1", list.get(0).getTestCaseId());
+		assertEquals("test2", list.get(1).getTestCaseId());
+		assertEquals("test4", list.get(2).getTestCaseId());
+		assertEquals("test3", list.get(3).getTestCaseId());
+	}
 
+	@Test
+	void testRemove() {
+		SortedList<TestCase> list = new SortedList<TestCase>();
+		VALID_TESTCASE1.addTestResult(true, "bb");
+		VALID_TESTCASE2.addTestResult(false, "it messed up :(");
+		VALID_TESTCASE3.addTestResult(true, "zz");
+		VALID_TESTCASE4.addTestResult(false, "aaa");
+		list.add(VALID_TESTCASE2);
+		list.add(VALID_TESTCASE1);
+		list.add(VALID_TESTCASE3);
+		list.add(VALID_TESTCASE4);
+		assertEquals(4, list.size());
+		list.remove(2);
+		assertEquals(3, list.size());
+		list.remove(0);
+		assertEquals(2, list.size());
+	}
 }
