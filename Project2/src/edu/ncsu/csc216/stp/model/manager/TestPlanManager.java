@@ -36,7 +36,6 @@ public class TestPlanManager {
 		failList = new FailingTestList(); // Initialize the list of failing tests
 		setCurrentTestPlan(failList.getTestPlanName());
 		isChanged = false; // Since this has just been constructed, the project has yet to be changed
-		System.out.println(failList.getTestPlanName());
 		// TODO fill in
 	}
 

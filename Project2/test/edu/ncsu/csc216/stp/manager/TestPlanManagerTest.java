@@ -33,7 +33,6 @@ class TestPlanManagerTest {
 		tp.addTestPlan("test plan 1");
 		tp.removeTestPlan();
 		assertEquals(tp.getTestPlanNames().length, 1);
-		System.out.print(tp.getTestPlanNames()[0]);
 		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), FailingTestList.FAILING_TEST_LIST_NAME);
 	}
 
