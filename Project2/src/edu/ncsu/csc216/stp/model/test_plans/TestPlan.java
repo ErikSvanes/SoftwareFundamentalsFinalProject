@@ -62,7 +62,31 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 *         being sorted
 	 */
 	public int compareTo(TestPlan tp) {
-		return tp.getTestPlanName().compareTo(this.getTestPlanName());
+		String a = this.getTestPlanName().toLowerCase();
+		String b = tp.getTestPlanName().toLowerCase();
+		int length = a.length();
+	    if (a.length() != b.length()) {
+	        if (a.length() < b.length()) {
+	            length = a.length();
+	        }
+	        else {
+	            length = b.length();
+	        }
+	    }
+	    for(int i = 0; i < length; i++) {
+	        int aVal = (int) a.charAt(i);
+	        int bVal = (int) b.charAt(i);
+	        if ( aVal - bVal != 0) {
+	            return (aVal - bVal);
+	        }
+	    }
+	    if (a.length() == b.length()) {
+	        return 0;
+	    }
+	    else if (length == a.length()) {
+	        return -1;
+	    }
+	    return 1;
 	}
 
 }

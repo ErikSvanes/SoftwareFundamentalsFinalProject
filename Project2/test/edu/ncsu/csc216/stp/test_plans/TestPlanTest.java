@@ -53,12 +53,12 @@ class TestPlanTest {
 	
 	@Test
 	void testCompareTo() {
-		TestPlan tp = new TestPlan("abc");
+		TestPlan tp = new TestPlan("abcdef");
 		TestPlan tp2 = new TestPlan("bcd");
 		TestPlan tp3 = new TestPlan("abc");
-		assertEquals(tp.compareTo(tp2), 1);
-		assertEquals(tp2.compareTo(tp), -1);
-		assertEquals(tp3.compareTo(tp), 0);
+		assertEquals(tp.compareTo(tp2), -1);
+		assertEquals(tp2.compareTo(tp), 1);
+		assertEquals(tp3.compareTo(tp), -1);
 	}
 
 }
