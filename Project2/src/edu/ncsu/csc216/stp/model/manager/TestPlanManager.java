@@ -84,7 +84,7 @@ public class TestPlanManager {
 			}
 		}
 		testPlans.add(new TestPlan(testPlanName));
-		currentTestPlan = testPlans.get(testPlans.size() - 1);
+		setCurrentTestPlan(testPlanName);
 
 		// TODO Actually add the TestPlan to the list of TestPlans
 		isChanged = true;
