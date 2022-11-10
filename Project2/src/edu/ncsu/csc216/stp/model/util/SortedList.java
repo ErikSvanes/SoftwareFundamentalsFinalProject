@@ -208,7 +208,7 @@ public class SortedList<E> implements ISortedList<E> {
 				current.next = new ListNode(element);
 				current.next.next = savedReference;
 				size++;
-				// TODO return;
+				return;
 			}
 			current = current.next;
 		}
@@ -216,7 +216,7 @@ public class SortedList<E> implements ISortedList<E> {
 		current.next = new ListNode(element);
 		size++;
 		// System.out.println(tsAdd.getTestCaseId());
-		// TODO return;
+		return;
 	}
 
 	/**
