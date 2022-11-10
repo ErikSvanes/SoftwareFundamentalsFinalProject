@@ -83,7 +83,8 @@ public class TestPlanManager {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 		}
-		testPlans.add(new TestPlan(testPlanName));
+		TestPlan tp = new TestPlan(testPlanName);
+		testPlans.add(tp);
 		setCurrentTestPlan(testPlanName);
 
 		// TODO Actually add the TestPlan to the list of TestPlans

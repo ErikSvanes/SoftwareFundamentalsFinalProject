@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 import edu.ncsu.csc216.stp.model.util.SortedList;
 
@@ -113,5 +114,14 @@ class SortedListTest {
 		assertEquals(3, list.size());
 		list.remove(0);
 		assertEquals(2, list.size());
+	}
+	
+	@Test
+	void testAdd() {
+		SortedList<TestPlan> list = new SortedList<TestPlan>();
+		list.add(new TestPlan("test 1"));
+		list.add(new TestPlan("test 2"));
+		assertEquals(list.get(0).getTestPlanName(), "test 1");
+		assertEquals(list.get(1).getTestPlanName(), "test 2");
 	}
 }

@@ -2,7 +2,6 @@ package edu.ncsu.csc216.stp.manager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.manager.TestPlanManager;
