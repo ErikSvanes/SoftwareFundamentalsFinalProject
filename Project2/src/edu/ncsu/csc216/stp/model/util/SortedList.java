@@ -54,7 +54,7 @@ public class SortedList<E> implements ISortedList<E> {
 		// add the element
 		TestCase tsAdd;
 		TestCase temp = new TestCase("temp", "temp", "temp", "temp");
-		boolean onlyFailed = true;
+		// TODO boolean onlyFailed = true;
 		try {
 			tsAdd = (TestCase) element;
 		} catch (Exception e) {
@@ -92,7 +92,7 @@ public class SortedList<E> implements ISortedList<E> {
 	 * Method that helps sort the list when it is a mix of pass and fail
 	 * 
 	 * @param element the element to add to the list
-	 * @param tsAdd the element but as a test case
+	 * @param tsAdd   the element but as a test case
 	 */
 	private void addElse(E element, TestCase tsAdd) {
 		ListNode current = front;
@@ -140,8 +140,7 @@ public class SortedList<E> implements ISortedList<E> {
 			// if it doesn't go in front
 			for (int i = 0; i < size - 1; i++) {
 				temp = (TestCase) current.next.data;
-				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0 ||
-						temp.isTestCasePassing()) {
+				if (tsAdd.getTestCaseId().compareTo(temp.getTestCaseId()) < 0 || temp.isTestCasePassing()) {
 					ListNode savedReference = current.next;
 					current.next = new ListNode(element);
 					current.next.next = savedReference;
@@ -150,16 +149,16 @@ public class SortedList<E> implements ISortedList<E> {
 				}
 				current = current.next;
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Method that sorts elements into a list of either only failing or only passing
 	 * test cases
 	 * 
 	 * @param element the element to add to the list
-	 * @param tsAdd the element casted to a test case
+	 * @param tsAdd   the element casted to a test case
 	 */
 	private void addOnly(E element, TestCase tsAdd) {
 		ListNode current = front;
@@ -169,8 +168,7 @@ public class SortedList<E> implements ISortedList<E> {
 			front = new ListNode(element, front);
 			size++;
 			return;
-		}
-		else if (!temp.isTestCasePassing() && tsAdd.isTestCasePassing()) {
+		} else if (!temp.isTestCasePassing() && tsAdd.isTestCasePassing()) {
 			while (current.next != null) {
 				current = current.next;
 			}
@@ -210,7 +208,7 @@ public class SortedList<E> implements ISortedList<E> {
 				current.next = new ListNode(element);
 				current.next.next = savedReference;
 				size++;
-				return;
+				// TODO return;
 			}
 			current = current.next;
 		}
@@ -218,7 +216,7 @@ public class SortedList<E> implements ISortedList<E> {
 		current.next = new ListNode(element);
 		size++;
 		// System.out.println(tsAdd.getTestCaseId());
-		return;
+		// TODO return;
 	}
 
 	/**
