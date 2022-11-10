@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
+import edu.ncsu.csc216.stp.model.util.SwapList;
 
 class TestPlanTest {
 	/** Valid TestPlan instantiation */
@@ -59,6 +60,56 @@ class TestPlanTest {
 		assertEquals(tp.compareTo(tp2), -1);
 		assertEquals(tp2.compareTo(tp), 1);
 		assertEquals(tp3.compareTo(tp), -1);
+	}
+	
+	@Test
+	void testNewInvalidTestPlan() {
+		assertThrows(IllegalArgumentException.class, () -> new TestPlan(null));
+		assertThrows(IllegalArgumentException.class, () -> new TestPlan(""));
+	}
+	
+	@Test
+	void testGetTestCases() {
+		TestPlan tp = new TestPlan("test");
+		tp.addTestCase(VALID_TEST_CASE1);
+		tp.addTestCase(VALID_TEST_CASE2);
+		tp.addTestCase(VALID_TEST_CASE3);
+		assertEquals(tp.getTestCases().get(0).getTestCaseId(), "id1");
+		assertEquals(tp.getTestCases().get(1).getTestCaseId(), "id2");
+		assertEquals(tp.getTestCases().get(2).getTestCaseId(), "id3");
+	}
+	
+	@Test
+	void testRemoveTestCase() {
+		TestPlan tp = new TestPlan("test");
+		tp.addTestCase(VALID_TEST_CASE1);
+		tp.addTestCase(VALID_TEST_CASE2);
+		assertEquals(tp.removeTestCase(0).getTestCaseId(), "id1");
+		assertEquals(tp.getTestCasesAsArray().length, 1);
+	}
+	
+	@Test
+	void testGetTestCase() {
+		TestPlan tp = new TestPlan("test");
+		tp.addTestCase(VALID_TEST_CASE1);
+		assertEquals(tp.getTestCase(0).getTestCaseId(), "id1");
+	}
+	
+	@Test
+	void testGetFailingTests() {
+		TestPlan tp = new TestPlan("test");
+		TestCase tc1 = VALID_TEST_CASE1;
+		tc1.addTestResult(false, "erik pls stop ):");
+		TestCase tc2 = VALID_TEST_CASE2;
+		tc2.addTestResult(true, "erik i love you <3");
+		TestCase tc3 = VALID_TEST_CASE3;
+		tc3.addTestResult(false, "boof");
+		tp.addTestCase(tc1);
+		tp.addTestCase(tc2);
+		tp.addTestCase(tc3);
+		assertEquals(tp.getNumberOfFailingTests(), 2);
+		tp.removeTestCase(0);
+		assertEquals(tp.getNumberOfFailingTests(), 1);
 	}
 
 }

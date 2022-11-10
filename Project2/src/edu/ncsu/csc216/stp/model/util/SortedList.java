@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.stp.model.util;
 
+import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 
 /**
@@ -51,6 +52,33 @@ public class SortedList<E> implements ISortedList<E> {
 			size++;
 			return;
 		}
+		try {
+			TestPlan add = (TestPlan) element;
+			current = front;
+			TestPlan tp = (TestPlan) front.data;
+			if (add.compareTo(tp) < 0) {
+				front = new ListNode(element, front);
+				size++;
+				return;
+			}
+			for (int i = 0; i < size - 1; i++) {
+				tp = (TestPlan) current.next.data;
+				if (add.compareTo(tp) < 0) {
+					ListNode savedReference = current.next;
+					current.next = new ListNode(element);
+					current.next.next = savedReference;
+					size++;
+					return;
+				}
+				current = current.next;
+			}
+			current.next = new ListNode(element);
+			size++;
+			return;
+		} catch (Exception e) {
+			// its not a test plan- continue with code assuming its a test case
+		}
+		
 		// add the element
 		TestCase tsAdd;
 		TestCase temp = new TestCase("temp", "temp", "temp", "temp");
@@ -215,8 +243,6 @@ public class SortedList<E> implements ISortedList<E> {
 		// if its the last element
 		current.next = new ListNode(element);
 		size++;
-		// System.out.println(tsAdd.getTestCaseId());
-		return;
 	}
 
 	/**
@@ -271,21 +297,7 @@ public class SortedList<E> implements ISortedList<E> {
 		for (int i = 0; i < idx; i++) {
 			current = current.next;
 		}
-//		System.out.println(((TestCase) current.data).getTestCaseId());
 		return (E) current.data;
-
-//		if (idx == 0 && size == 0) {
-//			return null;
-//		}
-//		if (idx < 0 || idx >= size) {
-//			System.out.println("idx: " + idx + " size: " + size);
-//			throw new IndexOutOfBoundsException();
-//		}
-//		ListNode current = front;
-//		for (int i = 0; i < idx - 1; i++) {
-//			current = current.next;
-//		}
-//		return (E) current.data;
 	}
 
 	@Override

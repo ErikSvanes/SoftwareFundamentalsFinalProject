@@ -33,7 +33,6 @@ public abstract class AbstractTestPlan {
 		}
 		setTestPlanName(testPlanName);
 		testCases = new SwapList<TestCase>();
-		// TODO fill in
 	}
 
 	/**
@@ -61,7 +60,6 @@ public abstract class AbstractTestPlan {
 	 */
 	public ISwapList<TestCase> getTestCases() {
 		return testCases;
-		// TODO Test this is working properly
 	}
 
 	/**
@@ -71,7 +69,6 @@ public abstract class AbstractTestPlan {
 	 */
 	public void addTestCase(TestCase t) {
 		testCases.add(t);
-		// TODO Test this works
 	}
 
 	/**
@@ -84,7 +81,6 @@ public abstract class AbstractTestPlan {
 		TestCase removed = testCases.get(idx);
 		testCases.remove(idx);
 		return removed;
-		// TODO Test this works
 	}
 
 	/**
@@ -95,7 +91,6 @@ public abstract class AbstractTestPlan {
 	 */
 	public TestCase getTestCase(int idx) {
 		return testCases.get(idx);
-		// TODO Test this works
 	}
 
 	/**
@@ -111,7 +106,6 @@ public abstract class AbstractTestPlan {
 			}
 		}
 		return failCount;
-		// TODO Test this works
 	}
 
 	/**

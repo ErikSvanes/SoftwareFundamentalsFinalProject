@@ -117,11 +117,17 @@ class SortedListTest {
 	}
 	
 	@Test
-	void testAdd() {
+	void testAddTestPlan() {
 		SortedList<TestPlan> list = new SortedList<TestPlan>();
 		list.add(new TestPlan("test 1"));
+		list.add(new TestPlan("test 3"));
+		list.add(new TestPlan("test"));
+		list.add(new TestPlan("TEST 4"));
 		list.add(new TestPlan("test 2"));
-		assertEquals(list.get(0).getTestPlanName(), "test 1");
-		assertEquals(list.get(1).getTestPlanName(), "test 2");
+		assertEquals(list.get(0).getTestPlanName(), "test");
+		assertEquals(list.get(1).getTestPlanName(), "test 1");
+		assertEquals(list.get(2).getTestPlanName(), "test 2");
+		assertEquals(list.get(3).getTestPlanName(), "test 3");
+		assertEquals(list.get(4).getTestPlanName(), "TEST 4");
 	}
 }
