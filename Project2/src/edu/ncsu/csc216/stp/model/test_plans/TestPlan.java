@@ -77,7 +77,7 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	        int aVal = (int) a.charAt(i);
 	        int bVal = (int) b.charAt(i);
 	        if ( aVal - bVal != 0) {
-	            return (aVal - bVal);
+	            return aVal - bVal;
 	        }
 	    }
 	    if (a.length() == b.length()) {
