@@ -50,5 +50,15 @@ class TestPlanTest {
 		assertEquals(out[2][1], "type3");
 		assertEquals(out[2][2], "FAIL");
 	}
+	
+	@Test
+	void testCompareTo() {
+		TestPlan tp = new TestPlan("abc");
+		TestPlan tp2 = new TestPlan("bcd");
+		TestPlan tp3 = new TestPlan("abc");
+		assertEquals(tp.compareTo(tp2), 1);
+		assertEquals(tp2.compareTo(tp), -1);
+		assertEquals(tp3.compareTo(tp), 0);
+	}
 
 }

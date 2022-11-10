@@ -62,8 +62,7 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 *         being sorted
 	 */
 	public int compareTo(TestPlan tp) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tp.getTestPlanName().compareTo(this.getTestPlanName());
 	}
 
 }
