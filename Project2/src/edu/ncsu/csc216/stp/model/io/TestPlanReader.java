@@ -67,8 +67,8 @@ public class TestPlanReader {
 	private static TestPlan processTestPlan(String testPlan) {
 		Scanner tpRead = new Scanner(testPlan);
 		String title = tpRead.next();
-		title = title.substring(1);
 		TestPlan tp = new TestPlan(title);
+		System.out.println(title);
 		TestPlan p = new TestPlan("placeholder");
 		tpRead.useDelimiter("\\r?\\n?[#]");
 		while(tpRead.hasNext()) {
@@ -102,15 +102,16 @@ public class TestPlanReader {
 		String testDescription = tcRead.next();
 		String expectedResults = tcRead.next();
 		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
+		System.out.println(expectedResults);
 		tcRead.useDelimiter("\\r?\\n?[-]");
 		while(tcRead.hasNext()) {
 			String result = tcRead.next();
-			System.out.println(result);
+			//System.out.println(result);
 		}
 		
 		firstLineRead.close();
 		tcRead.close();
-		return null;
+		return tc;
 	}
 
 }
