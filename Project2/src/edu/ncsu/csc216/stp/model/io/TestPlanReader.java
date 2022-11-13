@@ -42,13 +42,12 @@ public class TestPlanReader {
 			throw new IllegalArgumentException("Unable to load file");
 		}
 		String file = new String();
-		while(scan.hasNextLine()) {
+		while (scan.hasNextLine()) {
 			file = file + scan.nextLine() + "\n";
 		}
-		//System.out.println(file);
 		Scanner testPlanReader = new Scanner(file);
 		testPlanReader.useDelimiter("\\r?\\n?[!]");
-		while(testPlanReader.hasNext()) {
+		while (testPlanReader.hasNext()) {
 			TestPlan tp = processTestPlan(testPlanReader.next());
 			testPlans.add(tp);
 		}
@@ -68,12 +67,10 @@ public class TestPlanReader {
 		Scanner tpRead = new Scanner(testPlan);
 		String title = tpRead.next();
 		TestPlan tp = new TestPlan(title);
-		System.out.println(title);
-		TestPlan p = new TestPlan("placeholder");
 		tpRead.useDelimiter("\\r?\\n?[#]");
-		while(tpRead.hasNext()) {
+		while (tpRead.hasNext()) {
 			TestCase tc = processTest(tp, tpRead.next());
-			if(tc != null) {
+			if (tc != null) {
 				tp.addTestCase(tc);
 			}
 		}
@@ -101,12 +98,22 @@ public class TestPlanReader {
 		tcRead.useDelimiter("\\r?\\n?[*]");
 		String testDescription = tcRead.next();
 		String expectedResults = tcRead.next();
+		expectedResults = expectedResults.replace("\n", " ");
 		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
-		System.out.println(expectedResults);
-		tcRead.useDelimiter("\\r?\\n?[-]");
-		while(tcRead.hasNext()) {
-			String result = tcRead.next();
-			//System.out.println(result);
+		Scanner extras = new Scanner(expectedResults);
+		extras.useDelimiter("\\r?\\n?[-]");
+		while(extras.hasNext()) {
+			boolean isPassing;
+			String result = extras.next().substring(1);
+			if (result.contains("FAIL:")) {
+				isPassing = false;
+				result = result.substring(6);
+				tc.addTestResult(isPassing, result);
+			} else if (result.contains("PASS:")) {
+				isPassing = true;
+				result = result.substring(6);
+				tc.addTestResult(isPassing, result);
+			}
 		}
 		
 		firstLineRead.close();
