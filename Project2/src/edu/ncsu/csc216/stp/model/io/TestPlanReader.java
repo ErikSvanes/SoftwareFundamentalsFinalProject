@@ -1,12 +1,14 @@
 package edu.ncsu.csc216.stp.model.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.tests.TestCase;
 import edu.ncsu.csc216.stp.model.util.ISortedList;
+import edu.ncsu.csc216.stp.model.util.SortedList;
 
 /**
  * Concrete class which will handle reading in files that are inputed by the
@@ -32,18 +34,28 @@ public class TestPlanReader {
 	 * @param f File being read
 	 */
 	public static ISortedList<TestPlan> readTestPlansFile(File f) {
+		Scanner scan;
+		SortedList<TestPlan> testPlans = new SortedList<TestPlan>();
 		try {
-			Scanner scan = new Scanner(f);
-			String file = new String();
-			while(scan.hasNext()) {
-				file = file + scan.next();
-			}
-			processTestPlan(file);
-			scan.close();
-		} catch (Exception e) {
+			scan = new Scanner(f);
+		} catch (FileNotFoundException e) {
 			throw new IllegalArgumentException("Unable to load file");
 		}
-		return null;
+		String file = new String();
+		while(scan.hasNextLine()) {
+			file = file + scan.nextLine() + "\n";
+		}
+		//System.out.println(file);
+		Scanner testPlanReader = new Scanner(file);
+		testPlanReader.useDelimiter("\\r?\\n?[!]");
+		while(testPlanReader.hasNext()) {
+			TestPlan tp = processTestPlan(testPlanReader.next());
+			testPlans.add(tp);
+		}
+
+		scan.close();
+		testPlanReader.close();
+		return testPlans;
 	}
 
 	/**
@@ -53,11 +65,20 @@ public class TestPlanReader {
 	 * @return The String read in as a TestPlan object
 	 */
 	private static TestPlan processTestPlan(String testPlan) {
+		Scanner tpRead = new Scanner(testPlan);
+		String title = tpRead.next();
+		title = title.substring(1);
+		TestPlan tp = new TestPlan(title);
 		TestPlan p = new TestPlan("placeholder");
-		
-		TestCase tc = processTest(p, testPlan);
-		p.addTestCase(tc);
-		return p;
+		tpRead.useDelimiter("\\r?\\n?[#]");
+		while(tpRead.hasNext()) {
+			TestCase tc = processTest(tp, tpRead.next());
+			if(tc != null) {
+				tp.addTestCase(tc);
+			}
+		}
+		tpRead.close();
+		return tp;
 	}
 
 	/**
@@ -68,6 +89,27 @@ public class TestPlanReader {
 	 * @return The String read in as a TestCase object
 	 */
 	private static TestCase processTest(AbstractTestPlan plan, String testCase) {
+		Scanner tcRead = new Scanner(testCase);
+		String firstLine = tcRead.nextLine();
+		firstLine = firstLine.substring(1);
+		Scanner firstLineRead = new Scanner(firstLine);
+		firstLineRead.useDelimiter(",");
+		
+		String testCaseId = firstLineRead.next();
+		String testType = firstLineRead.next();
+		
+		tcRead.useDelimiter("\\r?\\n?[*]");
+		String testDescription = tcRead.next();
+		String expectedResults = tcRead.next();
+		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
+		tcRead.useDelimiter("\\r?\\n?[-]");
+		while(tcRead.hasNext()) {
+			String result = tcRead.next();
+			System.out.println(result);
+		}
+		
+		firstLineRead.close();
+		tcRead.close();
 		return null;
 	}
 
