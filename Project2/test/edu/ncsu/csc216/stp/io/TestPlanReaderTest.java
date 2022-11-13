@@ -8,11 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.io.TestPlanReader;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
-import edu.ncsu.csc216.stp.model.util.ISortedList;
 import edu.ncsu.csc216.stp.model.util.SortedList;
 
 class TestPlanReaderTest {
-	@SuppressWarnings("unchecked")
 	@Test
 	void testProjectReader() {
 		File file = new File("test-files/provided/test-plans0.txt");

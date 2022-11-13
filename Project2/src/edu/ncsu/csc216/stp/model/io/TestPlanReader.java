@@ -118,6 +118,7 @@ public class TestPlanReader {
 		
 		firstLineRead.close();
 		tcRead.close();
+		extras.close();
 		return tc;
 	}
 
