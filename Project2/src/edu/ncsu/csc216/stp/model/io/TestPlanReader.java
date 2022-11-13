@@ -54,6 +54,9 @@ public class TestPlanReader {
 
 		scan.close();
 		testPlanReader.close();
+		if(testPlans.size() == 0) {
+			throw new IllegalArgumentException("Unable to load file");
+		}
 		return testPlans;
 	}
 

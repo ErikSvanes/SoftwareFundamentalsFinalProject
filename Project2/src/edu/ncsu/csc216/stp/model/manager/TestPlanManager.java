@@ -2,6 +2,7 @@ package edu.ncsu.csc216.stp.model.manager;
 
 import java.io.File;
 
+import edu.ncsu.csc216.stp.model.io.TestPlanReader;
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.FailingTestList;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
@@ -45,7 +46,8 @@ public class TestPlanManager {
 	 * @param testPlanFile The File from which the TestPlans are being loaded
 	 */
 	public void loadTestPlans(File testPlanFile) {
-		// TODO fill in
+		TestPlanReader.readTestPlansFile(testPlanFile);
+		// TODO Test this works
 		isChanged = true;
 	}
 

@@ -12,7 +12,7 @@ import edu.ncsu.csc216.stp.model.util.SortedList;
 
 class TestPlanReaderTest {
 	@Test
-	void testProjectReader() {
+	void testTP0() {
 		File file = new File("test-files/provided/test-plans0.txt");
 		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
 		
