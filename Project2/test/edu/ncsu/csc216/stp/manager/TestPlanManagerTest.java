@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.manager.TestPlanManager;
 import edu.ncsu.csc216.stp.model.test_plans.FailingTestList;
+import edu.ncsu.csc216.stp.model.tests.TestCase;
 
 class TestPlanManagerTest {
 
@@ -53,6 +54,18 @@ class TestPlanManagerTest {
 		// be the current TestPlan
 		tp.setCurrentTestPlan("something dumb");
 		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), FailingTestList.FAILING_TEST_LIST_NAME);
+	}
+	
+	@Test
+	void testAddTestCase() {
+		TestPlanManager tp = new TestPlanManager();
+		tp.addTestPlan("test plan 1");
+		tp.addTestCase(new TestCase("id", "type", "desc", "expresults"));
+		assertEquals(tp.getCurrentTestPlan().getTestCase(0).getTestCaseId(), "id");
+		tp.addTestResult(0, false, "fail");
+		//System.out.println(tp.getCurrentTestPlan().getTestCase(0).isTestCasePassing());
+		//System.out.println(tp.getCurrentTestPlan().getNumberOfFailingTests());
+		//assertEquals(tp.getCurrentTestPlan().getNumberOfFailingTests(), 1);
 	}
 
 }

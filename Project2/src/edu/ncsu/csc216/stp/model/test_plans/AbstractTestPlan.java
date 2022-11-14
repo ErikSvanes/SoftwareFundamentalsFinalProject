@@ -101,7 +101,7 @@ public abstract class AbstractTestPlan {
 	public int getNumberOfFailingTests() {
 		int failCount = 0;
 		for(int i = 0; i < testCases.size(); i++) {
-			if(!testCases.get(i).isTestCasePassing()) { 
+			if(!testCases.get(i).isTestCasePassing()) {
 				failCount++;
 			}
 		}

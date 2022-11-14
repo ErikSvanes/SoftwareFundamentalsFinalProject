@@ -21,8 +21,6 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	public FailingTestList() {
 		super(FAILING_TEST_LIST_NAME);
-		//setTestPlanName(FAILING_TEST_LIST_NAME);
-		System.out.println(getTestPlanName());
 	}
 
 	/**

@@ -134,10 +134,10 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		if(testResults.size() == 0) {
+		if(this.testResults.size() == 0) {
 			return false;
 		}
-		return testResults.get(testResults.size() - 1).isPassing();
+		return this.testResults.get(testResults.size() - 1).isPassing();
 	}
 
 	/**

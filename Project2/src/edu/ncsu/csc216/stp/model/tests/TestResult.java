@@ -25,7 +25,6 @@ public class TestResult {
 	public TestResult(boolean passing, String actualResults) {
 		setActualResults(actualResults);
 		setPassing(passing);
-		// TODO Test this works
 	}
 
 	/**

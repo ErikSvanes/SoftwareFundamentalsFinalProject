@@ -204,10 +204,6 @@ public class TestPlanManager {
 			return;
 		} else if (currentTestPlan instanceof TestPlan) {
 			currentTestPlan.addTestCase(t);
-			if (!t.isTestCasePassing()) {
-				failList.addTestCase(t);
-				// TODO Test this works
-			}
 		}
 		// TODO fill in
 		isChanged = true;
@@ -222,6 +218,7 @@ public class TestPlanManager {
 	 * @param actualResult String of the Actual Results
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResult) {
+		currentTestPlan.addTestResult(idx, passing, actualResult);
 		// TODO fill in
 	}
 
