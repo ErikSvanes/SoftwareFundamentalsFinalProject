@@ -35,7 +35,7 @@ public class TestPlanManager {
 	public TestPlanManager() {
 		testPlans = new SortedList<TestPlan>(); // Initialize the testPlan
 		failList = new FailingTestList(); // Initialize the list of failing tests
-		setCurrentTestPlan(failList.getTestPlanName());
+		currentTestPlan = failList;
 		isChanged = false; // Since this has just been constructed, the project has yet to be changed
 		// TODO fill in
 	}
@@ -114,8 +114,14 @@ public class TestPlanManager {
 	 * Updates the list of failing tests
 	 */
 	private void getFailingTests() {
-		FailingTestList fail = new FailingTestList();
-		fail.clearTests();
+		failList = new FailingTestList();
+		for(int i = 0; i < testPlans.size(); i++) {
+			for(int j = 0; j < testPlans.get(i).getTestCases().size(); j++) {
+				if (!testPlans.get(i).getTestCase(j).isTestCasePassing()) {
+					failList.addTestCase(testPlans.get(i).getTestCase(j));
+				}
+			}
+		}
 		// TODO I dont know what to do here, fix later
 	}
 
@@ -127,7 +133,10 @@ public class TestPlanManager {
 	 */
 	public void setCurrentTestPlan(String testPlanName) {
 		for (int i = 0; i < testPlans.size(); i++) { // Find a TestPlan with the name given
-			if (testPlanName == testPlans.get(i).getTestPlanName()) {
+			if(testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) {
+				getFailingTests();
+				currentTestPlan = failList;
+			} else if (testPlanName == testPlans.get(i).getTestPlanName()) {
 				currentTestPlan = testPlans.get(i);
 				return; // End the loop so the current is not set the the list of failing tests
 			}
