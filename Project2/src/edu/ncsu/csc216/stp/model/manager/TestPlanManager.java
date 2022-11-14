@@ -46,7 +46,8 @@ public class TestPlanManager {
 	 * @param testPlanFile The File from which the TestPlans are being loaded
 	 */
 	public void loadTestPlans(File testPlanFile) {
-		TestPlanReader.readTestPlansFile(testPlanFile);
+		testPlans = TestPlanReader.readTestPlansFile(testPlanFile);
+		setCurrentTestPlan(failList.getTestPlanName());
 		// TODO Test this works
 		isChanged = true;
 	}

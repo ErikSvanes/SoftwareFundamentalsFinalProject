@@ -101,7 +101,7 @@ public class TestPlanReader {
 		tcRead.useDelimiter("\\r?\\n?[*]");
 		String testDescription = tcRead.next();
 		String expectedResults = tcRead.next();
-		expectedResults = expectedResults.replace("\n", " ");
+		//expectedResults = expectedResults.replace("\n", " ");
 		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
 		Scanner extras = new Scanner(expectedResults);
 		extras.useDelimiter("\\r?\\n?[-]");
