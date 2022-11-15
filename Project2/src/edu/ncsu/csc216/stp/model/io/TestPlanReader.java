@@ -84,7 +84,7 @@ public class TestPlanReader {
 				tp.addTestCase(tc);
 			} else if (tc == null) {
 				tpRead.close();
-				return null;
+				return tp;
 			}
 		}
 		tpRead.close();
@@ -131,7 +131,7 @@ public class TestPlanReader {
 				firstLineRead.close();
 				tcRead.close();
 				extras.close();
-				return tc;
+				return null;
 			}
 		}
 		
