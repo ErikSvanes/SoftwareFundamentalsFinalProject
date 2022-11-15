@@ -44,7 +44,7 @@ public class Log<E> implements ILog<E> {
 	@Override
 	public E get(int idx) {
 		if (idx < 0 || idx >= size || size == 0) {
-			throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 		return log[idx];
 	}
