@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.stp.model.io;
 
 import java.io.File;
+import java.io.PrintStream;
 
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
 import edu.ncsu.csc216.stp.model.util.ISortedList;
@@ -32,7 +33,22 @@ public class TestPlanWriter {
 	 *                                  writing to the file
 	 */
 	public static void writeTestPlanFile(File f, ISortedList<TestPlan> testPlans) {
-		// TODO fill in
+		PrintStream fileWriter;
+		try {
+			fileWriter = new PrintStream(f);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Unable to save file");
+		}
+		
+		TestPlan tp = null;
+		for (int i = 0; i < testPlans.size(); i++) {
+			tp = testPlans.get(i);
+			fileWriter.println("! " + tp.getTestPlanName());
+			for (int j = 0; j < tp.getTestCases().size(); j++) {
+				fileWriter.print(tp.getTestCases().get(i).toString());
+			}
+		}
+		fileWriter.close();
 	}
 
 }

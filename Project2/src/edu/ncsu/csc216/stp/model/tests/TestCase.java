@@ -170,7 +170,7 @@ public class TestCase {
 			if (i != 0) {
 				out += "\n";
 			}
-			out = out + "-" + passFail + ": " + testResults.get(i).getActualResults();
+			out = out + "- " + passFail + ": " + testResults.get(i).getActualResults();
 		}
 		return out;
 	}
