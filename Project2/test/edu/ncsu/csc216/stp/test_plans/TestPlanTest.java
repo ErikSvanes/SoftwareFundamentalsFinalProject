@@ -110,5 +110,14 @@ class TestPlanTest {
 		tp.removeTestCase(0);
 		assertEquals(tp.getNumberOfFailingTests(), 1);
 	}
+	
+	@Test
+	void testEquals() {
+		TestPlan tp = new TestPlan("test");
+		TestPlan tp2 = new TestPlan("Test");
+		TestPlan tp3 = new TestPlan("Testtttt");
+		assertTrue(tp.equals(tp2));
+		assertFalse(tp.equals(tp3));
+	}
 
 }
