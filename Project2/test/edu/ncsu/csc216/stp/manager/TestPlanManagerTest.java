@@ -63,9 +63,7 @@ class TestPlanManagerTest {
 		tp.addTestCase(new TestCase("id", "type", "desc", "expresults"));
 		assertEquals(tp.getCurrentTestPlan().getTestCase(0).getTestCaseId(), "id");
 		tp.addTestResult(0, false, "fail");
-		//System.out.println(tp.getCurrentTestPlan().getTestCase(0).isTestCasePassing());
-		//System.out.println(tp.getCurrentTestPlan().getNumberOfFailingTests());
-		//assertEquals(tp.getCurrentTestPlan().getNumberOfFailingTests(), 1);
+		assertEquals(tp.getCurrentTestPlan().getNumberOfFailingTests(), 1);
 	}
 
 }

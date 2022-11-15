@@ -1,7 +1,6 @@
 package edu.ncsu.csc216.stp.model.test_plans;
 
 import edu.ncsu.csc216.stp.model.tests.TestCase;
-import edu.ncsu.csc216.stp.model.tests.TestResult;
 import edu.ncsu.csc216.stp.model.util.ISwapList;
 import edu.ncsu.csc216.stp.model.util.SwapList;
 
@@ -102,7 +101,7 @@ public abstract class AbstractTestPlan {
 	public int getNumberOfFailingTests() {
 		int failCount = 0;
 		for (int i = 0; i < testCases.size(); i++) {
-			if (!testCases.get(i).isTestCasePassing()) {
+			if (!this.getTestCase(0).isTestCasePassing()) {
 				failCount++;
 			}
 		}
@@ -118,8 +117,7 @@ public abstract class AbstractTestPlan {
 	 * @param actualResults String of the actual results
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
-		TestResult newTestResult = new TestResult(passing, actualResults);
-		testCases.add(newTestResult);
+		testCases.get(idx).addTestResult(passing, actualResults);
 		// TODO Need to fix, SwapList doesnt have an index option for add
 	}
 
