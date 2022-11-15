@@ -35,7 +35,7 @@ class TestPlanReaderTest {
 		File file = new File("test-files/provided/test-plans8.txt");
 		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
 		
-		assertEquals(list.size(), 0);
+		assertEquals(list.size(), 1);
 	}
 
 }
