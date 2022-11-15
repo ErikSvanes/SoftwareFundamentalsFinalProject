@@ -84,7 +84,10 @@ public class TestPlanManager {
 	 *                                  duplicate of another
 	 */
 	public void addTestPlan(String testPlanName) {
-		if (testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) { // New Test Plan's name cannot be the same as the
+		if (testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) { // New Test
+																										// Plan's name
+																										// cannot be the
+																										// same as the
 			throw new IllegalArgumentException("Invalid name."); // list of failing tests
 		}
 		for (int i = 0; i < testPlans.size(); i++) { // Cannot have duplicate TestPlan names
@@ -169,9 +172,12 @@ public class TestPlanManager {
 	 *                                  another
 	 */
 	public void editTestPlan(String testPlanName) {
-		if (currentTestPlan.getTestPlanName() == FailingTestList.FAILING_TEST_LIST_NAME
-				|| currentTestPlan instanceof FailingTestList) {
-			throw new IllegalArgumentException("The Failing Tests list may not be edited."); // Current TestPlan cannot be a list of failing tests
+		if (currentTestPlan.getTestPlanName().equals(FailingTestList.FAILING_TEST_LIST_NAME)
+				|| currentTestPlan instanceof FailingTestList
+				|| testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) {
+			throw new IllegalArgumentException("The Failing Tests list may not be edited."); // Current TestPlan cannot
+																								// be a list of failing
+																								// tests
 		}
 		TestPlan newTestPlan = (TestPlan) currentTestPlan;
 		for (int i = 0; i < testPlans.size(); i++) {
