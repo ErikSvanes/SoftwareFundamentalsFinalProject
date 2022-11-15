@@ -280,7 +280,7 @@ public class SortedList<E> implements ISortedList<E> {
 	public boolean contains(E element) {
 		ListNode current = front;
 		for (int i = 0; i < size; i++) {
-			if (current.data.equals(element)) {
+			if (element.equals(current.data)) {
 				return true;
 			}
 			current = current.next;
