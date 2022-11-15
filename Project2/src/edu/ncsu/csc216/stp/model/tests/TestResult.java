@@ -23,7 +23,7 @@ public class TestResult {
 	 * @param actualResults String of the actual results of the TestResult
 	 */
 	public TestResult(boolean passing, String actualResults) {
-		if(actualResults == null || actualResults.isEmpty()) {
+		if (actualResults == null || actualResults.isEmpty()) {
 			throw new IllegalArgumentException("Invalid test results.");
 		}
 		setActualResults(actualResults);
@@ -64,6 +64,23 @@ public class TestResult {
 	 */
 	public void setPassing(boolean passing) {
 		this.passing = passing;
+	}
+
+	/**
+	 * Method to return a String with information about the Test Result. String
+	 * returns as "PASS: expected results", if the test result is passing, and
+	 * "FAIL: expected results" if it is failing.
+	 * 
+	 * @return String The String which is representing the TestResult
+	 */
+	public String toString() {
+		String passFail = new String();
+		if (isPassing()) {
+			passFail = PASS;
+		} else {
+			passFail = FAIL;
+		}
+		return passFail + ": " + getActualResults();
 	}
 
 }
