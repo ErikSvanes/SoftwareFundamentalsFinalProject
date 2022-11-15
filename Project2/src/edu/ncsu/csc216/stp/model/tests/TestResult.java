@@ -23,6 +23,9 @@ public class TestResult {
 	 * @param actualResults String of the actual results of the TestResult
 	 */
 	public TestResult(boolean passing, String actualResults) {
+		if(actualResults == null || actualResults.isEmpty()) {
+			throw new IllegalArgumentException("Invalid actaul results.");
+		}
 		setActualResults(actualResults);
 		setPassing(passing);
 	}
