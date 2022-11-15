@@ -187,6 +187,8 @@ public class TestPlanManager {
 			if (newTestPlan.getTestPlanName() == testPlans.get(i).getTestPlanName() && newTestPlan != currentTestPlan) {
 				throw new IllegalArgumentException("Invalid name.");
 			}
+			newTestPlan.setTestPlanName(testPlanName);
+			currentTestPlan = newTestPlan;
 		}
 		// TODO fill in
 	}
