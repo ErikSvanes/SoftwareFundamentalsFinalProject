@@ -142,22 +142,31 @@ public abstract class AbstractTestPlan {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		AbstractTestPlan other = (AbstractTestPlan) obj;
 		if (testCases == null) {
-			if (other.testCases != null)
+			if (other.testCases != null) {
 				return false;
-		} else if (!testCases.equals(other.testCases))
+			}
+		} else if (!testCases.equals(other.testCases)) {
 			return false;
+		}
+		if (testPlanName == null) {
+			if (other.testPlanName != null) {
+				return false;
+			}
+		} else if (!testPlanName.equals(other.testPlanName)) {
+			return false;
+		}
 		return true;
 	}
-
-	// TODO add hashCode and equals methods!
-	
 
 }
