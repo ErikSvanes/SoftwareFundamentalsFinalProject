@@ -3,6 +3,7 @@ package edu.ncsu.csc216.stp.model.manager;
 import java.io.File;
 
 import edu.ncsu.csc216.stp.model.io.TestPlanReader;
+import edu.ncsu.csc216.stp.model.io.TestPlanWriter;
 import edu.ncsu.csc216.stp.model.test_plans.AbstractTestPlan;
 import edu.ncsu.csc216.stp.model.test_plans.FailingTestList;
 import edu.ncsu.csc216.stp.model.test_plans.TestPlan;
@@ -30,7 +31,9 @@ public class TestPlanManager {
 	AbstractTestPlan currentTestPlan;
 
 	/**
-	 * Constructor for the TestPlanManager singleton method
+	 * Constructor for the TestPlanManager singleton method. isChanged is set to
+	 * false since this is the default list of TestPlans. The current TestPlan is
+	 * the list of Failing Tests.
 	 */
 	public TestPlanManager() {
 		testPlans = new SortedList<TestPlan>(); // Initialize the testPlan
@@ -41,7 +44,8 @@ public class TestPlanManager {
 	}
 
 	/**
-	 * Method for loading a list of TestPlans from a specified file
+	 * Method for loading a list of TestPlans from a specified file. This will set
+	 * isChanged to true since the User has loaded a new list of TestPlans
 	 * 
 	 * @param testPlanFile The File from which the TestPlans are being loaded
 	 */
@@ -53,12 +57,13 @@ public class TestPlanManager {
 	}
 
 	/**
-	 * Method for saving the current list of TestPlans to a specified file
+	 * Method for saving the current list of TestPlans to a specified file. This
+	 * will set isChanged to false since the TestPlan has been saved
 	 * 
 	 * @param testPlanFile The File which the list of TestPlans are being saved to
 	 */
 	public void saveTestPlans(File testPlanFile) {
-		// TODO fill in
+		TestPlanWriter.writeTestPlanFile(testPlanFile, testPlans);
 		isChanged = false;
 	}
 
@@ -69,13 +74,14 @@ public class TestPlanManager {
 	 */
 	public boolean isChanged() {
 		return isChanged;
-		// TODO Verify this is correct
 	}
 
 	/**
 	 * Method for adding a Test Plan to the list of TestPlans
 	 * 
 	 * @param testPlanName Name of the TestPlan being added
+	 * @throws IllegalArgumentException When the name is "Failing Tests" or a
+	 *                                  duplicate of another
 	 */
 	public void addTestPlan(String testPlanName) {
 		if (testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) { // New Test Plan's name cannot be the same as the
@@ -90,7 +96,6 @@ public class TestPlanManager {
 		testPlans.add(tp);
 		setCurrentTestPlan(testPlanName);
 
-		// TODO Actually add the TestPlan to the list of TestPlans
 		isChanged = true;
 	}
 
@@ -107,7 +112,6 @@ public class TestPlanManager {
 			names[i + 1] = testPlans.get(i).getTestPlanName();
 		}
 		return names;
-		// TODO fill in
 	}
 
 	/**
@@ -115,14 +119,13 @@ public class TestPlanManager {
 	 */
 	private void getFailingTests() {
 		failList = new FailingTestList();
-		for(int i = 0; i < testPlans.size(); i++) {
-			for(int j = 0; j < testPlans.get(i).getTestCases().size(); j++) {
+		for (int i = 0; i < testPlans.size(); i++) {
+			for (int j = 0; j < testPlans.get(i).getTestCases().size(); j++) {
 				if (!testPlans.get(i).getTestCase(j).isTestCasePassing()) {
 					failList.addTestCase(testPlans.get(i).getTestCase(j));
 				}
 			}
 		}
-		// TODO I dont know what to do here, fix later
 	}
 
 	/**
@@ -133,7 +136,7 @@ public class TestPlanManager {
 	 */
 	public void setCurrentTestPlan(String testPlanName) {
 		for (int i = 0; i < testPlans.size(); i++) { // Find a TestPlan with the name given
-			if(testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) {
+			if (testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) {
 				getFailingTests();
 				currentTestPlan = failList;
 			} else if (testPlanName == testPlans.get(i).getTestPlanName()) {
@@ -142,7 +145,6 @@ public class TestPlanManager {
 			}
 		}
 		currentTestPlan = failList; // If the TestPlan cannot be found, set current to list of failing tests
-		// TODO Test this is done correctly
 	}
 
 	/**
@@ -156,13 +158,15 @@ public class TestPlanManager {
 			getFailingTests(); // TODO This probably isnt right, fix later
 		}
 		return currentTestPlan;
-		// TODO Test this is correct
 	}
 
 	/**
 	 * Method for editing a TestPlan the User has selected.
 	 * 
 	 * @param testPlanName Name of the TestPlan the User wants to edit
+	 * @throws IllegalArgumentException When the current TestPlan is the Failing
+	 *                                  Tests or if there the name is a duplicate of
+	 *                                  another
 	 */
 	public void editTestPlan(String testPlanName) {
 		if (currentTestPlan.getTestPlanName() == FailingTestList.FAILING_TEST_LIST_NAME
@@ -180,6 +184,9 @@ public class TestPlanManager {
 	/**
 	 * Method for removing the currently selected TestPlan from the list of
 	 * TestPlans
+	 * 
+	 * @throws IllegalArgumentException When the User attempts to delete the Failing
+	 *                                  Tests list
 	 */
 	public void removeTestPlan() {
 		if (currentTestPlan instanceof FailingTestList) { // Cannot remove the list of Failing test Cases
@@ -190,7 +197,6 @@ public class TestPlanManager {
 				testPlans.remove(i);
 			}
 		}
-		// TODO Test this is correct
 		currentTestPlan = failList;
 	}
 

@@ -26,9 +26,10 @@ public abstract class AbstractTestPlan {
 	 * Constructor for an AbstractTestPlan
 	 * 
 	 * @param testPlanName String the Test Plan's name is being set to
+	 * @throws IllegalArgumentException If the parameterized name is null or empty.
 	 */
 	public AbstractTestPlan(String testPlanName) {
-		if(testPlanName == null || testPlanName.isEmpty()) {
+		if (testPlanName == null || testPlanName.isEmpty()) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		setTestPlanName(testPlanName);
@@ -100,8 +101,8 @@ public abstract class AbstractTestPlan {
 	 */
 	public int getNumberOfFailingTests() {
 		int failCount = 0;
-		for(int i = 0; i < testCases.size(); i++) {
-			if(!testCases.get(i).isTestCasePassing()) {
+		for (int i = 0; i < testCases.size(); i++) {
+			if (!testCases.get(i).isTestCasePassing()) {
 				failCount++;
 			}
 		}
