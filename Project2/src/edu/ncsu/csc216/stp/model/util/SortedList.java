@@ -43,7 +43,8 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
             current = current.next;
         }
         if (front == null) {
-        	front = new ListNode(element, null);
+        	front = new ListNode(element);
+        	front.next = null;
             size++;
             return;
         }
