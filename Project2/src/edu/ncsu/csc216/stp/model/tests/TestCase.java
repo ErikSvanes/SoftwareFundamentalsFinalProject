@@ -39,7 +39,7 @@ public class TestCase {
 		if (testCaseId == null || testCaseId.isEmpty() || testType == null || testType.isEmpty()
 				|| testDescription == null || testDescription.isEmpty() || expectedResults == null
 				|| expectedResults.isEmpty()) {
-			throw new IllegalArgumentException("Invalid Test Case.");
+			throw new IllegalArgumentException("Invalid test information.");
 		}
 			setTestCaseId(testCaseId);
 		setTestType(testType);
