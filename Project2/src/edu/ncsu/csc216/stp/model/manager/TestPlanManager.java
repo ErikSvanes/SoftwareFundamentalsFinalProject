@@ -172,11 +172,9 @@ public class TestPlanManager {
 	 *                                  another
 	 */
 	public void editTestPlan(String testPlanName) {
-		if( testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) {
+		if (testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())
+				|| testPlanName.equals(currentTestPlan.getTestPlanName())) {
 			throw new IllegalArgumentException("Invalid name.");
-		}
-		if (testPlanName.equals(currentTestPlan.getTestPlanName())) {
-			throw new IllegalArgumentException("Same name.");
 		}
 		if (currentTestPlan.getTestPlanName().equals(FailingTestList.FAILING_TEST_LIST_NAME)
 				|| currentTestPlan instanceof FailingTestList) {
