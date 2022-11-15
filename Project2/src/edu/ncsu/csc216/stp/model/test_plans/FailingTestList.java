@@ -46,7 +46,7 @@ public class FailingTestList extends AbstractTestPlan {
 	@Override
 	public void setTestPlanName(String testPlanName) {
 		if (testPlanName != FAILING_TEST_LIST_NAME) {
-			throw new IllegalArgumentException("The Failing Tests list cannot be edited");
+			throw new IllegalArgumentException("The Failing Tests list cannot be edited.");
 		}
 		super.setTestPlanName(testPlanName);
 		// TODO fill in
