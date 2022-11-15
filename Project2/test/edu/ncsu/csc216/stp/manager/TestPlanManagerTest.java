@@ -2,6 +2,8 @@ package edu.ncsu.csc216.stp.manager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import edu.ncsu.csc216.stp.model.manager.TestPlanManager;
@@ -64,6 +66,14 @@ class TestPlanManagerTest {
 		assertEquals(tp.getCurrentTestPlan().getTestCase(0).getTestCaseId(), "id");
 		tp.addTestResult(0, false, "fail");
 		assertEquals(tp.getCurrentTestPlan().getNumberOfFailingTests(), 1);
+	}
+	
+	@Test
+	void testTP3() {
+		TestPlanManager tp = new TestPlanManager();
+		File file = new File("test-files/provided/test-plans3.txt");
+		
+		assertThrows(IllegalArgumentException.class, () -> tp.loadTestPlans(file));
 	}
 
 }

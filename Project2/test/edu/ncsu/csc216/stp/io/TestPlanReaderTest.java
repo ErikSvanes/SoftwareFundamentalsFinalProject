@@ -29,5 +29,13 @@ class TestPlanReaderTest {
 		assertEquals(tp2.getTestCases().get(1).getTestCaseId(), "test2");
 		assertEquals(tp2.getTestCases().get(2).getTestCaseId(), "test3");
 	}
+	
+	@Test
+	void testTP8() {
+		File file = new File("test-files/provided/test-plans8.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		
+		assertEquals(list.size(), 0);
+	}
 
 }
