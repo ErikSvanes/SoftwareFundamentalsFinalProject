@@ -130,4 +130,18 @@ class SortedListTest {
 		assertEquals(list.get(3).getTestPlanName(), "test 3");
 		assertEquals(list.get(4).getTestPlanName(), "TEST 4");
 	}
+	
+	@Test
+	void testContains() {
+		SortedList<TestPlan> list = new SortedList<TestPlan>();
+		TestPlan tp1 = new TestPlan("banana");
+		TestPlan tp2 = new TestPlan("apple");
+		TestPlan tp3 = new TestPlan("orange");
+		TestPlan tp4 = new TestPlan("eggplant");
+		list.add(tp1);
+		list.add(tp2);
+		list.add(tp3);
+		list.add(tp4);
+		assertTrue(list.contains(tp2));
+	}
 }

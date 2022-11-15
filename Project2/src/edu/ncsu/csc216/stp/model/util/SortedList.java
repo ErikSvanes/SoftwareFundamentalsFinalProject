@@ -254,7 +254,7 @@ public class SortedList<E> implements ISortedList<E> {
 	@Override
 	public E remove(int idx) {
 		if (idx < 0 || idx >= size) {
-			throw new IllegalArgumentException();
+			throw new IndexOutOfBoundsException();
 		}
 		if (front == null) {
 			throw new NullPointerException();
@@ -296,10 +296,7 @@ public class SortedList<E> implements ISortedList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		if (idx == 0 && size == 0) {
-			return null;
-		}
-		if (idx < 0 || idx >= size || size == 0) {
+		if (idx < 0 || idx >= size || size == 0 || (idx == 0 && size == 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
