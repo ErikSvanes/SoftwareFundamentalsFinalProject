@@ -88,7 +88,7 @@ public class TestPlanManager {
 			throw new IllegalArgumentException("Invalid name."); // list of failing tests
 		}
 		for (int i = 0; i < testPlans.size(); i++) { // Cannot have duplicate TestPlan names
-			if (testPlans.get(i).getTestPlanName().toLowerCase() == testPlanName.toLowerCase()) {
+			if (testPlans.get(i).getTestPlanName().toLowerCase().equals(testPlanName.toLowerCase())) {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 		}

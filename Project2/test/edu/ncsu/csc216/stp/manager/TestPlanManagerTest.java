@@ -75,5 +75,12 @@ class TestPlanManagerTest {
 		
 		assertThrows(IllegalArgumentException.class, () -> tp.loadTestPlans(file));
 	}
+	
+	@Test
+	void testAddDuplicate() {
+		TestPlanManager tp = new TestPlanManager();
+		tp.addTestPlan("Test Plan");
+		assertThrows(IllegalArgumentException.class, () -> tp.addTestPlan("test plan"));
+	}
 
 }
