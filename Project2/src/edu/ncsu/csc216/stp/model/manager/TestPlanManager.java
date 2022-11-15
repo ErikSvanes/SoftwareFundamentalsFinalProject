@@ -84,7 +84,7 @@ public class TestPlanManager {
 	 *                                  duplicate of another
 	 */
 	public void addTestPlan(String testPlanName) {
-		if (testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) { // New Test Plan's name cannot be the same as the
+		if (testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) { // New Test Plan's name cannot be the same as the
 			throw new IllegalArgumentException("Invalid name."); // list of failing tests
 		}
 		for (int i = 0; i < testPlans.size(); i++) { // Cannot have duplicate TestPlan names
