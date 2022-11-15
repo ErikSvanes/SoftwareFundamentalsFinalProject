@@ -130,6 +130,33 @@ public abstract class AbstractTestPlan {
 	 */
 	public abstract String[][] getTestCasesAsArray();
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((testCases == null) ? 0 : testCases.hashCode());
+		result = prime * result + ((testPlanName == null) ? 0 : testPlanName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractTestPlan other = (AbstractTestPlan) obj;
+		if (testCases == null) {
+			if (other.testCases != null)
+				return false;
+		} else if (!testCases.equals(other.testCases))
+			return false;
+		return true;
+	}
+
 	// TODO add hashCode and equals methods!
+	
 
 }
