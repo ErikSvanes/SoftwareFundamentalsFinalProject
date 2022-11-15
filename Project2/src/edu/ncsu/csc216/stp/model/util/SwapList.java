@@ -60,7 +60,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveUp(int idx) {
-		if (idx < 0 || idx >= size)
+		if (idx < 1 || idx >= size)
 			throw new IndexOutOfBoundsException("Invalid index.");
 		swapElements(idx, idx - 1);
 	}
@@ -73,7 +73,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@Override
 	public void moveDown(int idx) {
-		if (idx < 0 || idx >= size)
+		if (idx < 0 || idx >= size - 1)
 			throw new IndexOutOfBoundsException("Invalid index.");
 		swapElements(idx, idx + 1);
 	}
