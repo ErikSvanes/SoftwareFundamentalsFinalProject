@@ -186,6 +186,9 @@ public class TestCase {
 	 * @param t The TestPlan object which the TestCase is being set to
 	 */
 	public void setTestPlan(TestPlan t) {
+		if(t == null) {
+			throw new IllegalArgumentException("Invalid test plan.");
+		}
 		this.testPlan = t;
 	}
 
