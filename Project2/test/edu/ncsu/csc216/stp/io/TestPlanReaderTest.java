@@ -28,11 +28,48 @@ class TestPlanReaderTest {
 		assertEquals(tp2.getTestCases().get(0).getTestCaseId(), "test1");
 		assertEquals(tp2.getTestCases().get(1).getTestCaseId(), "test2");
 		assertEquals(tp2.getTestCases().get(2).getTestCaseId(), "test3");
+		assertEquals(tp2.getTestCase(2).getTestDescription(), " description\non multiple lines\n");
+	}
+	
+	@Test
+	void testTP4() {
+		File file = new File("test-files/provided/test-plans4.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		
+		assertEquals(list.size(), 1);
+		assertEquals(list.get(0).getTestCases().size(), 0);
+	}
+	
+	@Test
+	void testTP5() {
+		File file = new File("test-files/provided/test-plans5.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		
+		assertEquals(list.size(), 1);
+		assertEquals(list.get(0).getTestCases().size(), 0);
+	}
+	
+	@Test
+	void testTP6() {
+		File file = new File("test-files/provided/test-plans6.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		
+		assertEquals(list.size(), 1);
+		assertEquals(list.get(0).getTestCases().size(), 0);
 	}
 	
 	@Test
 	void testTP8() {
 		File file = new File("test-files/provided/test-plans8.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		
+		assertEquals(list.size(), 1);
+		assertEquals(list.get(0).getTestCases().size(), 0);
+	}
+	
+	@Test
+	void testTP7() {
+		File file = new File("test-files/provided/test-plans7.txt");
 		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
 		
 		assertEquals(list.size(), 1);
