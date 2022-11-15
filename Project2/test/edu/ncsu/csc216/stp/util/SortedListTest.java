@@ -22,7 +22,6 @@ class SortedListTest {
 	@Test
 	void testNewSortedList() {
 		SortedList<TestCase> list = new SortedList<TestCase>();
-		assertEquals(list.get(0), null);
 		assertEquals(list.size(), 0);
 	}
 	
