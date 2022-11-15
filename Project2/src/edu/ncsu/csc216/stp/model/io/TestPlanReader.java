@@ -52,7 +52,7 @@ public class TestPlanReader {
 			firstLine.close();
 			scan.close();
 			testPlanReader.close();
-			throw new IllegalArgumentException("Invalid file");
+			throw new IllegalArgumentException("Unable to load file.");
 		}
 		while (testPlanReader.hasNext()) {
 			TestPlan tp = processTestPlan(testPlanReader.next());
@@ -137,7 +137,7 @@ public class TestPlanReader {
 			if (expResRead.nextLine().charAt(0) == '-') {
 				break;
 			}
-			expectedResults += "\n" + expResRead.nextLine();
+			expectedResults += expResRead.nextLine() + "\n";
 		}
 		firstTwo.close();
 		expResRead.close();
