@@ -24,7 +24,7 @@ public class TestResult {
 	 */
 	public TestResult(boolean passing, String actualResults) {
 		if(actualResults == null || actualResults.isEmpty()) {
-			throw new IllegalArgumentException("Invalid actaul results.");
+			throw new IllegalArgumentException("Invalid test results.");
 		}
 		setActualResults(actualResults);
 		setPassing(passing);
