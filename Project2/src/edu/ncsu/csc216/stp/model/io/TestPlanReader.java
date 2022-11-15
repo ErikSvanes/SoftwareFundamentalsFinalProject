@@ -47,16 +47,20 @@ public class TestPlanReader {
 		}
 		Scanner testPlanReader = new Scanner(file);
 		testPlanReader.useDelimiter("\\r?\\n?[!]");
+		if(!testPlanReader.next().contains("!")) {
+			scan.close();
+			testPlanReader.close();
+			throw new IllegalArgumentException("Invalid file");
+		}
 		while (testPlanReader.hasNext()) {
 			TestPlan tp = processTestPlan(testPlanReader.next());
-			testPlans.add(tp);
+			if(tp != null) {
+				testPlans.add(tp);
+			}
 		}
 
 		scan.close();
 		testPlanReader.close();
-		if(testPlans.size() == 0) {
-			throw new IllegalArgumentException("Unable to load file");
-		}
 		return testPlans;
 	}
 
@@ -75,6 +79,9 @@ public class TestPlanReader {
 			TestCase tc = processTest(tp, tpRead.next());
 			if (tc != null) {
 				tp.addTestCase(tc);
+			} else if (tc == null) {
+				tpRead.close();
+				return null;
 			}
 		}
 		tpRead.close();
@@ -105,6 +112,7 @@ public class TestPlanReader {
 		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
 		Scanner extras = new Scanner(expectedResults);
 		extras.useDelimiter("\\r?\\n?[-]");
+		extras.next();
 		while(extras.hasNext()) {
 			boolean isPassing;
 			String result = extras.next().substring(1);
@@ -116,6 +124,11 @@ public class TestPlanReader {
 				isPassing = true;
 				result = result.substring(6);
 				tc.addTestResult(isPassing, result);
+			} else if (!result.contains("PASS:") && !result.contains("FAIL:")) {
+				firstLineRead.close();
+				tcRead.close();
+				extras.close();
+				return null;
 			}
 		}
 		
