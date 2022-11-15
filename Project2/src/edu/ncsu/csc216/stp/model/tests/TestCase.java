@@ -36,7 +36,12 @@ public class TestCase {
 	 * @param expectedResults Expected Results of the TestCase as a String
 	 */
 	public TestCase(String testCaseId, String testType, String testDescription, String expectedResults) {
-		setTestCaseId(testCaseId);
+		if (testCaseId == null || testCaseId.isEmpty() || testType == null || testType.isEmpty()
+				|| testDescription == null || testDescription.isEmpty() || expectedResults == null
+				|| expectedResults.isEmpty()) {
+			throw new IllegalArgumentException("Invalid Test Case.");
+		}
+			setTestCaseId(testCaseId);
 		setTestType(testType);
 		setTestDescription(testDescription);
 		setExpectedResults(expectedResults);
@@ -134,7 +139,7 @@ public class TestCase {
 	 * @return The boolean value of whether or not the TestCase is passing
 	 */
 	public boolean isTestCasePassing() {
-		if(this.testResults.size() == 0) {
+		if (this.testResults.size() == 0) {
 			return false;
 		}
 		return this.testResults.get(testResults.size() - 1).isPassing();
