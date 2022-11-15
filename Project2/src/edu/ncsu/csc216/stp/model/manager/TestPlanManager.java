@@ -175,6 +175,9 @@ public class TestPlanManager {
 		if( testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
+		if (testPlanName.equals(currentTestPlan.getTestPlanName())) {
+			throw new IllegalArgumentException("Same name.");
+		}
 		if (currentTestPlan.getTestPlanName().equals(FailingTestList.FAILING_TEST_LIST_NAME)
 				|| currentTestPlan instanceof FailingTestList) {
 			throw new IllegalArgumentException("The Failing Tests list may not be edited."); // Current TestPlan cannot
