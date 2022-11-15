@@ -173,8 +173,9 @@ public class TestPlanManager {
 				|| currentTestPlan instanceof FailingTestList) {
 			throw new IllegalArgumentException("The Failing Tests list may not be edited."); // Current TestPlan cannot be a list of failing tests
 		}
+		TestPlan newTestPlan = (TestPlan) currentTestPlan;
 		for (int i = 0; i < testPlans.size(); i++) {
-			if (currentTestPlan.getTestPlanName() == testPlans.get(i).getTestPlanName()) {
+			if (newTestPlan.getTestPlanName() == testPlans.get(i).getTestPlanName() && newTestPlan != currentTestPlan) {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 		}
