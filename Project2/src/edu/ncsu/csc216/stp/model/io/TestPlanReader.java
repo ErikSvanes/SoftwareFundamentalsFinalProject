@@ -39,7 +39,7 @@ public class TestPlanReader {
 		try {
 			scan = new Scanner(f);
 		} catch (FileNotFoundException e) {
-			throw new IllegalArgumentException("Unable to load file");
+			throw new IllegalArgumentException("Unable to load file.");
 		}
 		String file = new String();
 		while (scan.hasNextLine()) {
@@ -48,7 +48,7 @@ public class TestPlanReader {
 		Scanner testPlanReader = new Scanner(file);
 		Scanner firstLine = new Scanner(file);
 		testPlanReader.useDelimiter("\\r?\\n?[!]");
-		if(!firstLine.next().contains("!")) {
+		if (!firstLine.next().contains("!")) {
 			firstLine.close();
 			scan.close();
 			testPlanReader.close();
@@ -56,7 +56,7 @@ public class TestPlanReader {
 		}
 		while (testPlanReader.hasNext()) {
 			TestPlan tp = processTestPlan(testPlanReader.next());
-			if(tp != null) {
+			if (tp != null) {
 				testPlans.add(tp);
 			}
 		}
@@ -99,24 +99,57 @@ public class TestPlanReader {
 	 * @return The String read in as a TestCase object
 	 */
 	private static TestCase processTest(AbstractTestPlan plan, String testCase) {
+		String testCaseId = new String();
+		String testType = new String();
 		Scanner tcRead = new Scanner(testCase);
-		String firstLine = tcRead.nextLine();
-		firstLine = firstLine.substring(1);
-		Scanner firstLineRead = new Scanner(firstLine);
-		firstLineRead.useDelimiter(",");
-		
-		String testCaseId = firstLineRead.next();
-		String testType = firstLineRead.next();
-		
-		tcRead.useDelimiter("\\r?\\n?[*]");
+		String firstLine = tcRead.nextLine().substring(1);
+		Scanner firstTwo = new Scanner(firstLine);
+		firstTwo.useDelimiter(",");
+		if (!firstTwo.hasNext()) {
+			firstTwo.close();
+			tcRead.close();
+			return null;
+		} else if (firstTwo.hasNext()) {
+			testCaseId = firstTwo.next();
+		}
+
+		if (!firstTwo.hasNext()) {
+			firstTwo.close();
+			tcRead.close();
+			return null;
+		} else if (firstTwo.hasNext()) {
+			testType = firstTwo.next();
+		}
+
+		tcRead.useDelimiter("[*]");
 		String testDescription = tcRead.next();
-		String expectedResults = tcRead.next();
-		//expectedResults = expectedResults.replace("\n", " ");
+		if (!tcRead.hasNext()) {
+			firstTwo.close();
+			tcRead.close();
+			return null;
+		}
+		String expInit = tcRead.next().substring(1);
+
+		Scanner expResRead = new Scanner(expInit);
+		Scanner extras = new Scanner(expInit);
+		String expectedResults = expResRead.nextLine();
+		while (expResRead.hasNextLine()) {
+			if (expResRead.nextLine().charAt(0) == '-') {
+				break;
+			}
+			expectedResults += "\n" + expResRead.nextLine();
+		}
+		firstTwo.close();
+		expResRead.close();
+		if (expectedResults.isBlank() || expectedResults.isEmpty() || testDescription.isEmpty() || testDescription.isBlank()) {
+			tcRead.close();
+			extras.close();
+			return null;
+		}
 		TestCase tc = new TestCase(testCaseId, testType, testDescription, expectedResults);
-		Scanner extras = new Scanner(expectedResults);
 		extras.useDelimiter("\\r?\\n?[-]");
 		extras.next();
-		while(extras.hasNext()) {
+		while (extras.hasNext()) {
 			boolean isPassing;
 			String result = extras.next().substring(1);
 			if (result.contains("FAIL:")) {
@@ -128,16 +161,15 @@ public class TestPlanReader {
 				result = result.substring(6);
 				tc.addTestResult(isPassing, result);
 			} else if (!result.contains("PASS:") && !result.contains("FAIL:")) {
-				firstLineRead.close();
 				tcRead.close();
 				extras.close();
 				return null;
 			}
 		}
-		
-		firstLineRead.close();
-		tcRead.close();
 		extras.close();
+		firstTwo.close();
+		tcRead.close();
+		tc.setTestPlan((TestPlan) plan);
 		return tc;
 	}
 
