@@ -2,8 +2,8 @@
 # test0,Invalid
 *  description
 
-* expected results
-- PASS: actual results
+* expected results- PASS: actual results
+
 - PASS: actual results
 - FAIL: actual results
 # test1,Equivalence Class
@@ -16,8 +16,8 @@
 *  description
 with multiple lines
 
-* expected results
-- PASS: actual results
+* expected results- PASS: actual results
+
 - PASS: actual results
 - FAIL: actual results on
 multiple lines

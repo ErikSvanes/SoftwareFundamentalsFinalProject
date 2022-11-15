@@ -23,6 +23,8 @@ class TestPlanWriterTest {
 		
 		TestPlanWriter.writeTestPlanFile(file, list);
 		
+		assertEquals(list.size(), 2);
+		
 //		list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
 //		
 //		assertEquals(list.size(), 2);

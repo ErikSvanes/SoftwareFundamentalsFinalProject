@@ -296,7 +296,7 @@ public class SortedList<E> implements ISortedList<E> {
 	 */
 	@Override
 	public E get(int idx) {
-		if (idx < 0 || idx >= size || size == 0 || (idx == 0 && size == 0)) {
+		if (idx < 0 || idx >= size || size == 0 || idx == 0 && size == 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
