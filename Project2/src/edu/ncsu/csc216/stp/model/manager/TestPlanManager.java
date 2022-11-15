@@ -88,7 +88,7 @@ public class TestPlanManager {
 			throw new IllegalArgumentException("Invalid name."); // list of failing tests
 		}
 		for (int i = 0; i < testPlans.size(); i++) { // Cannot have duplicate TestPlan names
-			if (testPlans.get(i).getTestPlanName() == testPlanName) {
+			if (testPlans.get(i).getTestPlanName().toLowerCase() == testPlanName.toLowerCase()) {
 				throw new IllegalArgumentException("Invalid name.");
 			}
 		}
@@ -171,7 +171,7 @@ public class TestPlanManager {
 	public void editTestPlan(String testPlanName) {
 		if (currentTestPlan.getTestPlanName() == FailingTestList.FAILING_TEST_LIST_NAME
 				|| currentTestPlan instanceof FailingTestList) {
-			throw new IllegalArgumentException("Invalid name."); // Current TestPlan cannot be a list of failing tests
+			throw new IllegalArgumentException("The Failing Tests list may not be edited."); // Current TestPlan cannot be a list of failing tests
 		}
 		for (int i = 0; i < testPlans.size(); i++) {
 			if (currentTestPlan.getTestPlanName() == testPlans.get(i).getTestPlanName()) {
@@ -190,7 +190,7 @@ public class TestPlanManager {
 	 */
 	public void removeTestPlan() {
 		if (currentTestPlan instanceof FailingTestList) { // Cannot remove the list of Failing test Cases
-			throw new IllegalArgumentException("The Failing Tests list may not be edited.");
+			throw new IllegalArgumentException("The Failing Tests list may not be deleted.");
 		}
 		for (int i = 0; i < testPlans.size(); i++) { // Search for the current TestPlan's ID
 			if (testPlans.get(i).getTestPlanName() == currentTestPlan.getTestPlanName()) {
