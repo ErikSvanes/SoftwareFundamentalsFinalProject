@@ -46,8 +46,10 @@ public class TestPlanReader {
 			file = file + scan.nextLine() + "\n";
 		}
 		Scanner testPlanReader = new Scanner(file);
+		Scanner firstLine = new Scanner(file);
 		testPlanReader.useDelimiter("\\r?\\n?[!]");
-		if(!testPlanReader.next().contains("!")) {
+		if(!firstLine.next().contains("!")) {
+			firstLine.close();
 			scan.close();
 			testPlanReader.close();
 			throw new IllegalArgumentException("Invalid file");
@@ -59,6 +61,7 @@ public class TestPlanReader {
 			}
 		}
 
+		firstLine.close();
 		scan.close();
 		testPlanReader.close();
 		return testPlans;
