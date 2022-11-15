@@ -1,7 +1,7 @@
 # csc216-P2-T-067
 # Project 2 Part 2 ReadMe <br>
 ## Process Points 1 <br>
-***_Required Tasks to Complete PP1_***
+***_Required Tasks to Complete PP1_*** <br>
  ✓ **Create project folder and clone to repository:** Erik **Due:** 10/28/22 **Status:** Completed on 10/28/22 <br>
  ✓ **Generate src folder:** Erik **Due:** 10/29/22 **Status:** Completed on 10/29/22 <br>
  ✓ **Generate all packages and subpackages:** Will **Due:** 10/30/22 **Status:** Completed on 10/30/22 <br>
