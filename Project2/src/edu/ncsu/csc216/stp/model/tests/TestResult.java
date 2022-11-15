@@ -80,7 +80,7 @@ public class TestResult {
 		} else {
 			passFail = FAIL;
 		}
-		return passFail + ": " + getActualResults();
+		return passFail + ": " + getActualResults() + " ";
 	}
 
 }
