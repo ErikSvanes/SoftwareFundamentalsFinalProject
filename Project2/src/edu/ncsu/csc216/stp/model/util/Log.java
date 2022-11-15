@@ -26,7 +26,7 @@ public class Log<E> implements ILog<E> {
 	@Override
 	public void add(E element) {
 		if(element == null) {
-			throw new NullPointerException("Cannot add null element");
+			throw new NullPointerException("Cannot add null element.");
 		}
 		if (size == log.length) {
 			growArray();
@@ -43,7 +43,7 @@ public class Log<E> implements ILog<E> {
 
 	@Override
 	public E get(int idx) {
-		if(idx < 0 || idx > size) {
+		if (idx < 0 || idx >= size || size == 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		return log[idx];

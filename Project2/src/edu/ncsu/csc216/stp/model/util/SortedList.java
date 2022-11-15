@@ -253,8 +253,11 @@ public class SortedList<E> implements ISortedList<E> {
 	 */
 	@Override
 	public E remove(int idx) {
-		if (idx < 0 || idx > size) {
+		if (idx < 0 || idx >= size) {
 			throw new IllegalArgumentException();
+		}
+		if (front == null) {
+			throw new NullPointerException();
 		}
 		if (idx == 0) {
 			E returnValue = front.data;
@@ -275,7 +278,13 @@ public class SortedList<E> implements ISortedList<E> {
 
 	@Override
 	public boolean contains(E element) {
-		// TODO Auto-generated method stub
+		ListNode current = front;
+		while (current != null) {
+			if (current.data.equals(element)) {
+				return true;
+			}
+			current = current.next;
+		}
 		return false;
 	}
 
@@ -290,7 +299,7 @@ public class SortedList<E> implements ISortedList<E> {
 		if (idx == 0 && size == 0) {
 			return null;
 		}
-		if (idx < 0 || idx >= size) {
+		if (idx < 0 || idx >= size || size == 0) {
 			throw new IndexOutOfBoundsException();
 		}
 		ListNode current = front;
