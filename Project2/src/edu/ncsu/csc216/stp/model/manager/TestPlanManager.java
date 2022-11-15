@@ -249,7 +249,6 @@ public class TestPlanManager {
 		failList = new FailingTestList(); // Clear the list of Failing Test Cases
 		currentTestPlan = failList; // Set the current TestPlan to the list of failing tests
 		isChanged = false; // isChanged will not be false
-		// TODO Test this is correct
 	}
 
 }

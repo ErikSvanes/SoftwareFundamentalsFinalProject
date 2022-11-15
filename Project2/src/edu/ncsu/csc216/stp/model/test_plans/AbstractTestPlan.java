@@ -68,6 +68,7 @@ public abstract class AbstractTestPlan {
 	 * @param t TestCase object being added to the TestPlan
 	 */
 	public void addTestCase(TestCase t) {
+		t.setTestPlan((TestPlan) this);
 		testCases.add(t);
 	}
 
