@@ -82,5 +82,15 @@ class TestPlanManagerTest {
 		tp.addTestPlan("Test Plan");
 		assertThrows(IllegalArgumentException.class, () -> tp.addTestPlan("test plan"));
 	}
+	
+	@Test
+	void testEditTestPlan() {
+		TestPlanManager tp = new TestPlanManager();
+		tp.addTestPlan("test plan 1");
+		assertThrows(IllegalArgumentException.class, () -> tp.editTestPlan("Failing Tests"));
+		assertThrows(IllegalArgumentException.class, () -> tp.editTestPlan("test plan 1"));
+		tp.addTestPlan("test plan 2");
+		assertThrows(IllegalArgumentException.class, () -> tp.editTestPlan("test plan 1"));
+	}
 
 }
