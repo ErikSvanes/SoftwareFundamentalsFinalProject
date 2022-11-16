@@ -43,7 +43,7 @@ public class TestPlanWriter {
 		TestPlan tp = null;
 		for (int i = 0; i < testPlans.size(); i++) {
 			tp = testPlans.get(i);
-			fileWriter.print("! " + tp.getTestPlanName());
+			fileWriter.print("! " + tp.getTestPlanName() + "\n");
 			for (int j = 0; j < tp.getTestCases().size(); j++) {
 				fileWriter.print(tp.getTestCases().get(j).toString());
 			}

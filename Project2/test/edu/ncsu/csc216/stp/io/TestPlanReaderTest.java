@@ -92,5 +92,16 @@ class TestPlanReaderTest {
 		assertEquals(list.size(), 1);
 		assertEquals(list.get(0).getTestCases().size(), 0);
 	}
+	
+	@Test
+	void testTP1() {
+		File file = new File("test-files/provided/test-plans1.txt");
+		SortedList<TestPlan> list = (SortedList<TestPlan>) TestPlanReader.readTestPlansFile(file);
+		TestPlan tp1 = list.get(0);
+		assertEquals(tp1.getTestPlanName(), "PackScheduler");
+		
+		//Test for PackScheduler's T24 Test
+		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: course added (Lab 5)\n- FAIL: course not added b/c of invalid course name (Lab 6)");
+	}
 
 }
