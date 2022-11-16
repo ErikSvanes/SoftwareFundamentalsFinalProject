@@ -211,7 +211,7 @@ public class TestCase {
 		String out = new String();
 		out = out + "\n# " + this.testCaseId + "," + this.testType + "\n";
 		out = out + "* " + this.getTestDescription() + "\n* " + this.getExpectedResults() + "\n";
-		out = out + this.getActualResultsLog();
+		out = out + this.getActualResultsLog() + "\n";
 		return out;
 	}
 
