@@ -1,4 +1,5 @@
-! PackScheduler# test0,Invalid
+! PackScheduler
+# test0,Invalid
 * description
 * expected results
 with multiple lines
@@ -8,18 +9,15 @@ with multiple lines
 * description
 * expected results
 - PASS: actual results
-
-! WolfScheduler# test1,Equivalence Class
+! WolfScheduler
+# test1,Equivalence Class
 * description
 with multiple lines
 * expected results
 with multiple lines
 - PASS: actual results
-- FAIL: actual results on
-multiple lines
-- PASS: actual results
-on three
-lines
+- FAIL: actual results onmultiple lines
+- PASS: actual resultson threelines
 # test2,Boundary Value
 * description
 * expected results

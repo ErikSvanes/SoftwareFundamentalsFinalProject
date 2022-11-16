@@ -152,7 +152,6 @@ public class TestPlanReader {
 				break;
 			}
 		}
-		expectedResults.trim();
 		firstTwo.close();
 		expResRead.close();
 		if (expectedResults.isBlank() || expectedResults.isEmpty() || testDescription.isEmpty()
@@ -179,12 +178,10 @@ public class TestPlanReader {
 			if (result.contains("FAIL:")) {
 				isPassing = false;
 				result = result.substring(6);
-				result.trim();
 				tc.addTestResult(isPassing, result);
 			} else if (result.contains("PASS:")) {
 				isPassing = true;
 				result = result.substring(6);
-				result.replace("\n", "");
 				tc.addTestResult(isPassing, result);
 			} else if (!result.contains("PASS:") && !result.contains("FAIL:")) {
 				tcRead.close();

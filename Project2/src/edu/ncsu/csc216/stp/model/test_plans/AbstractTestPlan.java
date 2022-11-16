@@ -145,10 +145,7 @@ public abstract class AbstractTestPlan {
 	@Override
 	public boolean equals(Object obj) {
 		AbstractTestPlan other = (AbstractTestPlan) obj;
-		if (!testPlanName.equalsIgnoreCase(other.testPlanName)) {
-			return false;
-		}
-		return true;
+		return testPlanName.equalsIgnoreCase(other.testPlanName);
 	}
 
 }
