@@ -131,14 +131,16 @@ public abstract class AbstractTestPlan {
 	 */
 	public abstract String[][] getTestCasesAsArray();
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((testCases == null) ? 0 : testCases.hashCode());
-		result = prime * result + ((testPlanName == null) ? 0 : testPlanName.hashCode());
-		return result;
-	}
+	/**
+     * Overridden hashCode method for testPlanName.
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((testPlanName == null) ? 0 : testPlanName.hashCode());
+        return result;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
