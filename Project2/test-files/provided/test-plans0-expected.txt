@@ -6,11 +6,13 @@
 
 - PASS: actual results
 - FAIL: actual results
+
 # test1,Equivalence Class
 *  description
 
 * expected results
 - PASS: actual results
+
 ! WolfScheduler
 # test1,Equivalence Class
 *  description
@@ -24,10 +26,12 @@ multiple lines
 - PASS: actual results
 on three
 lines
+
 # test2,Boundary Value
 *  description
 
 * expected results
+
 
 # test3,Requirements
 *  description
