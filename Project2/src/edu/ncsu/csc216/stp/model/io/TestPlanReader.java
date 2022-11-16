@@ -135,6 +135,13 @@ public class TestPlanReader {
 		String expectedResults = new String();
 		while (expResRead.hasNextLine()) {
 			String temp = expResRead.nextLine();
+			if (temp.isBlank() || temp.isEmpty()) {
+				expResRead.close();
+				extras.close();
+				tcRead.close();
+				firstTwo.close();
+				return null;
+			}
 			if (temp.charAt(0) != '-') {
 				if (expectedResults.isEmpty()) {
 					expectedResults += temp;
