@@ -29,7 +29,22 @@ class TestPlanReaderTest {
 		assertEquals(tp2.getTestCases().get(1).getTestCaseId(), "test2");
 		assertEquals(tp2.getTestCases().get(2).getTestCaseId(), "test3");
 		assertEquals(tp2.getTestCase(2).getTestDescription(), "description\non multiple lines");
+		
+		//Tests for PackScheduler's Test0
+		assertEquals(tp1.getTestCase(0).getTestCaseId(), "test0");
+		assertEquals(tp1.getTestCase(0).getTestType(), "Invalid");
 		assertEquals(tp1.getTestCase(0).getTestDescription(), "description");
+		assertEquals(tp1.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
+		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: actual results\n- FAIL: actual results");
+		
+		//Tests for PackScheduler's Test1
+		assertEquals(tp1.getTestCase(1).getTestCaseId(), "test1");
+		assertEquals(tp1.getTestCase(1).getTestType(), "Equivalence Class");
+		assertEquals(tp1.getTestCase(1).getTestDescription(), "description");
+		assertEquals(tp1.getTestCase(1).getExpectedResults(), "expected results");
+		assertEquals(tp1.getTestCase(1).getActualResultsLog(), "- PASS: actual results");
+		
+		//Tests for WolfScheduler's Test0
 		assertEquals(tp2.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
 	}
 	

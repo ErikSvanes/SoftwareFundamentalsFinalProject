@@ -166,14 +166,25 @@ public class TestPlanReader {
 		extras.next();
 		while (extras.hasNext()) {
 			boolean isPassing;
-			String result = extras.next().substring(1);
+			String resultInit = extras.next().substring(1);
+			String result = new String();
+			Scanner out = new Scanner(resultInit);
+			while(out.hasNextLine()) {
+				String out2 = out.nextLine();
+				if(!out2.isBlank()) {
+					result += out2;
+				}
+			}
+			out.close();
 			if (result.contains("FAIL:")) {
 				isPassing = false;
 				result = result.substring(6);
+				result.trim();
 				tc.addTestResult(isPassing, result);
 			} else if (result.contains("PASS:")) {
 				isPassing = true;
 				result = result.substring(6);
+				result.replace("\n", "");
 				tc.addTestResult(isPassing, result);
 			} else if (!result.contains("PASS:") && !result.contains("FAIL:")) {
 				tcRead.close();
