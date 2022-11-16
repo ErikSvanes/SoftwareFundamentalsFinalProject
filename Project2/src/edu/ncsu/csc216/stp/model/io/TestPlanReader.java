@@ -122,7 +122,7 @@ public class TestPlanReader {
 		}
 
 		tcRead.useDelimiter("[*]");
-		String testDescription = tcRead.next();
+		String testDescription = tcRead.next().substring(1).trim();
 		if (!tcRead.hasNext()) {
 			firstTwo.close();
 			tcRead.close();
@@ -132,16 +132,24 @@ public class TestPlanReader {
 
 		Scanner expResRead = new Scanner(expInit);
 		Scanner extras = new Scanner(expInit);
-		String expectedResults = expResRead.nextLine();
+		String expectedResults = new String();
 		while (expResRead.hasNextLine()) {
-			if (expResRead.nextLine().charAt(0) == '-') {
+			String temp = expResRead.nextLine();
+			if (temp.charAt(0) != '-') {
+				if (expectedResults.isEmpty()) {
+					expectedResults += temp;
+				} else {
+					expectedResults += "\n" + temp;
+				}
+			} else if (temp.charAt(0) == '-') {
 				break;
 			}
-			expectedResults += expResRead.nextLine() + "\n";
 		}
+		expectedResults.trim();
 		firstTwo.close();
 		expResRead.close();
-		if (expectedResults.isBlank() || expectedResults.isEmpty() || testDescription.isEmpty() || testDescription.isBlank()) {
+		if (expectedResults.isBlank() || expectedResults.isEmpty() || testDescription.isEmpty()
+				|| testDescription.isBlank()) {
 			tcRead.close();
 			extras.close();
 			return null;

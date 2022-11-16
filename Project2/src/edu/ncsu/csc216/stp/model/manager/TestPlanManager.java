@@ -221,6 +221,7 @@ public class TestPlanManager {
 		if (currentTestPlan instanceof FailingTestList) { // Cannot add a test case to the list of failing tests
 			return;
 		} else if (currentTestPlan instanceof TestPlan) {
+			t.setTestPlan((TestPlan) currentTestPlan);
 			currentTestPlan.addTestCase(t);
 		}
 		// TODO fill in

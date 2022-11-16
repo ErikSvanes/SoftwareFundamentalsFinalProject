@@ -28,7 +28,9 @@ class TestPlanReaderTest {
 		assertEquals(tp2.getTestCases().get(0).getTestCaseId(), "test1");
 		assertEquals(tp2.getTestCases().get(1).getTestCaseId(), "test2");
 		assertEquals(tp2.getTestCases().get(2).getTestCaseId(), "test3");
-		assertEquals(tp2.getTestCase(2).getTestDescription(), " description\non multiple lines\n");
+		assertEquals(tp2.getTestCase(2).getTestDescription(), "description\non multiple lines");
+		assertEquals(tp1.getTestCase(0).getTestDescription(), "description");
+		assertEquals(tp2.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
 	}
 	
 	@Test
