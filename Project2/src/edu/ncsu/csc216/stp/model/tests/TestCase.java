@@ -41,7 +41,7 @@ public class TestCase {
 				|| expectedResults.isEmpty()) {
 			throw new IllegalArgumentException("Invalid test information.");
 		}
-			setTestCaseId(testCaseId);
+		setTestCaseId(testCaseId);
 		setTestType(testType);
 		setTestDescription(testDescription);
 		setExpectedResults(expectedResults);
@@ -164,20 +164,24 @@ public class TestCase {
 	 * @return ActualResultsLog of the TestCase as a String
 	 */
 	public String getActualResultsLog() {
-		String out = new String();
-		String passFail = new String();
-		for (int i = 0; i < testResults.size(); i++) {
-			if (testResults.get(i).isPassing()) {
-				passFail = TestResult.PASS;
-			} else if (!testResults.get(i).isPassing()) {
-				passFail = TestResult.FAIL;
+		if (testResults.size() == 0) {
+			return new String();
+		} else {
+			String out = new String();
+			String passFail = new String();
+			for (int i = 0; i < testResults.size(); i++) {
+				if (testResults.get(i).isPassing()) {
+					passFail = TestResult.PASS;
+				} else if (!testResults.get(i).isPassing()) {
+					passFail = TestResult.FAIL;
+				}
+				if (i != 0) {
+					out += "\n";
+				}
+				out = out + "- " + passFail + ": " + testResults.get(i).getActualResults();
 			}
-			if (i != 0) {
-				out += "\n";
-			}
-			out = out + "- " + passFail + ": " + testResults.get(i).getActualResults();
+			return out + "\n";
 		}
-		return out + "\n";
 	}
 
 	/**
@@ -186,7 +190,7 @@ public class TestCase {
 	 * @param t The TestPlan object which the TestCase is being set to
 	 */
 	public void setTestPlan(TestPlan t) {
-		if(t == null) {
+		if (t == null) {
 			throw new IllegalArgumentException("Invalid test plan.");
 		}
 		this.testPlan = t;

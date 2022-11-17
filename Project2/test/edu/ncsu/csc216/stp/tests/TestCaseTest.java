@@ -45,7 +45,7 @@ class TestCaseTest {
 		tc.addTestResult(true, "erik is no longer stinky");
 		String expectedResultsLog = "- FAIL: erik is stinky\n- PASS: erik is no longer stinky\n";
 		assertEquals(tc.getActualResultsLog(), expectedResultsLog);
-		String toString = "# id,type\n* description\n* expected results\n" + expectedResultsLog + "\n";
+		String toString = "# id,type\n* description\n* expected results\n" + expectedResultsLog;
 		assertEquals(tc.toString(), toString);
 	}
 	
