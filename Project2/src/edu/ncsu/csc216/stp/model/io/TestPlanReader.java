@@ -102,7 +102,13 @@ public class TestPlanReader {
 		String testCaseId = new String();
 		String testType = new String();
 		Scanner tcRead = new Scanner(testCase);
-		String firstLine = tcRead.nextLine().substring(1);
+		String firstLine = tcRead.nextLine();
+		if(firstLine.length() < 1) {
+			tcRead.close();
+			return null;
+		} else if(firstLine.length() >= 1){
+			firstLine = firstLine.substring(1);
+		}
 		Scanner firstTwo = new Scanner(firstLine);
 		firstTwo.useDelimiter(",");
 		if (!firstTwo.hasNext()) {

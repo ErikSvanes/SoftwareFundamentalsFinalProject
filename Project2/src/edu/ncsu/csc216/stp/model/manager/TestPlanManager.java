@@ -50,7 +50,14 @@ public class TestPlanManager {
 	 * @param testPlanFile The File from which the TestPlans are being loaded
 	 */
 	public void loadTestPlans(File testPlanFile) {
-		testPlans = TestPlanReader.readTestPlansFile(testPlanFile);
+		ISortedList<TestPlan> loaded = TestPlanReader.readTestPlansFile(testPlanFile);
+		for(int i = 0; i < loaded.size(); i++) {
+			try {
+				testPlans.add(loaded.get(i));
+			} catch (IllegalArgumentException e) {
+				break;
+			}
+		}
 		setCurrentTestPlan(failList.getTestPlanName());
 		// TODO Test this works
 		isChanged = true;
@@ -142,7 +149,7 @@ public class TestPlanManager {
 			if (testPlanName == FailingTestList.FAILING_TEST_LIST_NAME) {
 				getFailingTests();
 				currentTestPlan = failList;
-			} else if (testPlanName == testPlans.get(i).getTestPlanName()) {
+			} else if (testPlanName.equals(testPlans.get(i).getTestPlanName())) {
 				currentTestPlan = testPlans.get(i);
 				return; // End the loop so the current is not set the the list of failing tests
 			}

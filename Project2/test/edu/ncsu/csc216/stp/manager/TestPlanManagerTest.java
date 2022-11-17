@@ -92,5 +92,19 @@ class TestPlanManagerTest {
 		tp.addTestPlan("test plan 2");
 		assertThrows(IllegalArgumentException.class, () -> tp.editTestPlan("test plan 1"));
 	}
+	
+	@Test
+	void testLoadDuplicate() {
+		TestPlanManager tp = new TestPlanManager();
+		tp.loadTestPlans(new File("test-files/provided/test-plans0.txt"));
+		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), "Failing Tests");
+		tp.setCurrentTestPlan("PackScheduler");
+		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), "PackScheduler");
+		tp.setCurrentTestPlan("WolfScheduler");
+		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), "WolfScheduler");
+		tp.loadTestPlans(new File("test-files/provided/test-plans1.txt"));
+		assertEquals(tp.getTestPlanNames().length, 3);
+		assertEquals(tp.getCurrentTestPlan().getTestPlanName(), "Failing Tests");
+	}
 
 }
