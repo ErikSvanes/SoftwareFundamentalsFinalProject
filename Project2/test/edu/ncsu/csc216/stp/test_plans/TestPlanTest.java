@@ -119,5 +119,11 @@ class TestPlanTest {
 		assertTrue(tp.equals(tp2));
 		assertFalse(tp.equals(tp3));
 	}
+	
+	@Test
+	void testHashCode() {
+		TestPlan tp = new TestPlan("test");
+		assertEquals(tp.hashCode(), 3556529);
+	}
 
 }
