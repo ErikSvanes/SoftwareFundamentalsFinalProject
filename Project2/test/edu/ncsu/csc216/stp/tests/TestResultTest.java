@@ -22,4 +22,12 @@ class TestResultTest {
 		assertEquals(tr2.getActualResults(), "erik broked it");
 		assertFalse(tr2.isPassing());
 	}
+	
+	@Test
+	void testResultToString() {
+		TestResult tr1 = PASSING_TEST_RESULT;
+		assertEquals("PASS: erik made it work", tr1.toString());
+		TestResult tr2 = FAILING_TEST_RESULT;
+		assertEquals("FAIL: erik broked it", tr2.toString());
+	}
 }
