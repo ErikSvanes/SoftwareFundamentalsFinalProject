@@ -66,7 +66,12 @@ public class FailingTestList extends AbstractTestPlan {
 			for(int i = 0; i < testCases.size(); i++) {
 				out[i][0] = testCases.get(i).getTestCaseId();
 				out[i][1] = testCases.get(i).getTestType();
-				out[i][2] = testCases.get(i).getTestPlan().getTestPlanName();
+				if (testCases.get(i).getTestPlan() == null) {
+					out[i][2] = "";
+				}
+				else {
+					out[i][2] = testCases.get(i).getTestPlan().getTestPlanName();
+				}
 			}
 			return out;
 		}
