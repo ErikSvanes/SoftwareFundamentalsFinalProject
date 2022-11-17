@@ -35,14 +35,14 @@ class TestPlanReaderTest {
 		assertEquals(tp1.getTestCase(0).getTestType(), "Invalid");
 		assertEquals(tp1.getTestCase(0).getTestDescription(), "description");
 		assertEquals(tp1.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
-		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: actual results\n- FAIL: actual results");
+		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: actual results\n- FAIL: actual results\n");
 		
 		//Tests for PackScheduler's Test1
 		assertEquals(tp1.getTestCase(1).getTestCaseId(), "test1");
 		assertEquals(tp1.getTestCase(1).getTestType(), "Equivalence Class");
 		assertEquals(tp1.getTestCase(1).getTestDescription(), "description");
 		assertEquals(tp1.getTestCase(1).getExpectedResults(), "expected results");
-		assertEquals(tp1.getTestCase(1).getActualResultsLog(), "- PASS: actual results");
+		assertEquals(tp1.getTestCase(1).getActualResultsLog(), "- PASS: actual results\n");
 		
 		//Tests for WolfScheduler's Test1
 		assertEquals(tp2.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
@@ -51,7 +51,7 @@ class TestPlanReaderTest {
 				+ "multiple lines\n"
 				+ "- PASS: actual results\n"
 				+ "on three\n"
-				+ "lines");
+				+ "lines\n");
 	}
 	
 	@Test
@@ -107,7 +107,8 @@ class TestPlanReaderTest {
 		assertEquals(tp1.getTestPlanName(), "PackScheduler");
 		
 		//Test for PackScheduler's T24 Test
-		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: course added (Lab 5)\n- FAIL: course not added b/c of invalid course name (Lab 6)");
+		assertEquals(tp1.getTestCase(0).getActualResultsLog(), "- PASS: course added (Lab 5)\n"
+				+ "- FAIL: course not added b/c of invalid course name (Lab 6)\n");
 	}
 
 }

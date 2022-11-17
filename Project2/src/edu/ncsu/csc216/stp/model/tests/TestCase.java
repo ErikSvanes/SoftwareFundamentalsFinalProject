@@ -177,7 +177,7 @@ public class TestCase {
 			}
 			out = out + "- " + passFail + ": " + testResults.get(i).getActualResults();
 		}
-		return out;
+		return out + "\n";
 	}
 
 	/**
