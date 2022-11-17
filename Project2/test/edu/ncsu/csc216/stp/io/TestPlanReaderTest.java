@@ -44,8 +44,14 @@ class TestPlanReaderTest {
 		assertEquals(tp1.getTestCase(1).getExpectedResults(), "expected results");
 		assertEquals(tp1.getTestCase(1).getActualResultsLog(), "- PASS: actual results");
 		
-		//Tests for WolfScheduler's Test0
+		//Tests for WolfScheduler's Test1
 		assertEquals(tp2.getTestCase(0).getExpectedResults(), "expected results\nwith multiple lines");
+		assertEquals(tp2.getTestCase(0).getActualResultsLog(), "- PASS: actual results\n"
+				+ "- FAIL: actual results on\n"
+				+ "multiple lines\n"
+				+ "- PASS: actual results\n"
+				+ "on three\n"
+				+ "lines");
 	}
 	
 	@Test

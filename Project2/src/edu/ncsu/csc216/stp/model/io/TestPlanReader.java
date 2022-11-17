@@ -171,7 +171,12 @@ public class TestPlanReader {
 			while(out.hasNextLine()) {
 				String out2 = out.nextLine();
 				if(!out2.isBlank()) {
-					result += out2;
+					if(out.hasNextLine()) {
+						result += out2 + "\n";
+					} else if(!out.hasNextLine()) { 
+						result += out2;
+					}
+					
 				}
 			}
 			out.close();
