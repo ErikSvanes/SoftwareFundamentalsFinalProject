@@ -40,7 +40,6 @@ public class TestPlanManager {
 		failList = new FailingTestList(); // Initialize the list of failing tests
 		currentTestPlan = failList;
 		isChanged = false; // Since this has just been constructed, the project has yet to be changed
-		// TODO fill in
 	}
 
 	/**
@@ -59,7 +58,6 @@ public class TestPlanManager {
 			}
 		}
 		setCurrentTestPlan(failList.getTestPlanName());
-		// TODO Test this works
 		isChanged = true;
 	}
 
@@ -165,7 +163,7 @@ public class TestPlanManager {
 	 */
 	public AbstractTestPlan getCurrentTestPlan() {
 		if (currentTestPlan.equals(failList)) {
-			getFailingTests(); // TODO This probably isnt right, fix later
+			getFailingTests(); // TODO This probably isn't right, fix later
 		}
 		return currentTestPlan;
 	}
@@ -197,7 +195,6 @@ public class TestPlanManager {
 			newTestPlan.setTestPlanName(testPlanName);
 			currentTestPlan = newTestPlan;
 		}
-		// TODO fill in
 	}
 
 	/**
@@ -245,7 +242,6 @@ public class TestPlanManager {
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResult) {
 		currentTestPlan.addTestResult(idx, passing, actualResult);
-		// TODO fill in
 	}
 
 	/**

@@ -24,14 +24,15 @@ public class TestPlanReader {
 	 * Constructor for TestPlanReader
 	 */
 	public TestPlanReader() {
-		// TODO fill in
+		// empty constructor
 	}
 
 	/**
 	 * Method for reading in Test Plans from a given file path
 	 * 
-	 * @return The parsed System Test Plans as Sorted Lists of TestPlans
 	 * @param f File being read
+	 * @return The parsed System Test Plans as Sorted Lists of TestPlans
+	 * @throws IllegalArgumentException if the file can't be read
 	 */
 	public static ISortedList<TestPlan> readTestPlansFile(File f) {
 		Scanner scan;
@@ -103,10 +104,10 @@ public class TestPlanReader {
 		String testType = new String();
 		Scanner tcRead = new Scanner(testCase);
 		String firstLine = tcRead.nextLine();
-		if(firstLine.length() < 1) {
+		if (firstLine.length() < 1) {
 			tcRead.close();
 			return null;
-		} else if(firstLine.length() >= 1){
+		} else if (firstLine.length() >= 1) {
 			firstLine = firstLine.substring(1);
 		}
 		Scanner firstTwo = new Scanner(firstLine);
@@ -174,15 +175,15 @@ public class TestPlanReader {
 			String resultInit = extras.next().substring(1);
 			String result = new String();
 			Scanner out = new Scanner(resultInit);
-			while(out.hasNextLine()) {
+			while (out.hasNextLine()) {
 				String out2 = out.nextLine();
-				if(!out2.isBlank()) {
-					if(out.hasNextLine()) {
+				if (!out2.isBlank()) {
+					if (out.hasNextLine()) {
 						result += out2 + "\n";
-					} else if(!out.hasNextLine()) { 
+					} else if (!out.hasNextLine()) {
 						result += out2;
 					}
-					
+
 				}
 			}
 			out.close();

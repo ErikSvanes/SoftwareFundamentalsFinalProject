@@ -21,6 +21,7 @@ public class TestResult {
 	 * 
 	 * @param passing       Boolean of whether or not the TestResult was successful
 	 * @param actualResults String of the actual results of the TestResult
+	 * @throws IllegalArgumentException if the actual results are invalid
 	 */
 	public TestResult(boolean passing, String actualResults) {
 		if (actualResults == null || actualResults.isEmpty()) {

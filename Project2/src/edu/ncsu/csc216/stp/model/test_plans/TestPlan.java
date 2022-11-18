@@ -17,13 +17,13 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 	 * Constructor for a TestPlan object
 	 * 
 	 * @param testPlanName name of the Test Plan
+	 * @throws IllegalArgumentException if the name is invalid
 	 */
 	public TestPlan(String testPlanName) {
 		super(testPlanName);
 		if(testPlanName.toLowerCase().equals(FailingTestList.FAILING_TEST_LIST_NAME.toLowerCase())) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
-		// TODO Test this works
 	}
 
 	/**
@@ -39,7 +39,6 @@ public class TestPlan extends AbstractTestPlan implements Comparable<TestPlan> {
 			out[i][1] = testCases.get(i).getTestType();
 			out[i][2] = testCases.get(i).getStatus();
 		}
-		// TODO Test this works
 		return out;
 	}
 

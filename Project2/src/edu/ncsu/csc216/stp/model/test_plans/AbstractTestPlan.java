@@ -119,7 +119,6 @@ public abstract class AbstractTestPlan {
 	 */
 	public void addTestResult(int idx, boolean passing, String actualResults) {
 		testCases.get(idx).addTestResult(passing, actualResults);
-		// TODO Need to fix, SwapList doesnt have an index option for add
 	}
 
 	/**
@@ -142,6 +141,9 @@ public abstract class AbstractTestPlan {
         return result;
     }
 
+    /**
+     * Overridden equals method
+     */
 	@Override
 	public boolean equals(Object obj) {
 		AbstractTestPlan other = (AbstractTestPlan) obj;

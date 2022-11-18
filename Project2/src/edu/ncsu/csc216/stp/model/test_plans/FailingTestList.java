@@ -35,7 +35,6 @@ public class FailingTestList extends AbstractTestPlan {
 		} else {
 			testCases.add(t);
 		}
-		// TODO Test this works
 	}
 
 	/**
@@ -49,7 +48,6 @@ public class FailingTestList extends AbstractTestPlan {
 			throw new IllegalArgumentException("The Failing Tests list cannot be edited.");
 		}
 		super.setTestPlanName(testPlanName);
-		// TODO fill in
 	}
 
 	/**
@@ -75,7 +73,6 @@ public class FailingTestList extends AbstractTestPlan {
 			}
 			return out;
 		}
-		// TODO Test this works
 	}
 
 	/**
@@ -83,6 +80,5 @@ public class FailingTestList extends AbstractTestPlan {
 	 */
 	public void clearTests() {
 		testCases = new SwapList<TestCase>();
-		// TODO Test this works
 	}
 }

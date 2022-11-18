@@ -37,6 +37,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * Method that removes the element at the specified valid index
 	 * 
 	 * @param idx the index of the element to remove
+	 * @return the element that was removed
 	 * @throws IndexOutOfBoundsException if the index is out of bounds for the list
 	 */
 	@Override
@@ -57,6 +58,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * in the list (index - 1).
 	 * 
 	 * @param idx the index of the element to swap
+	 * @throws IndexOutOfBoundsException if the index was invalid
 	 */
 	@Override
 	public void moveUp(int idx) {
@@ -72,6 +74,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * the list (index - +).
 	 * 
 	 * @param idx the index of the element to swap
+	 * @throws IndexOutOfBoundsException if the index is out of the scope of the list
 	 */
 	@Override
 	public void moveDown(int idx) {
@@ -87,6 +90,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * the list.
 	 * 
 	 * @param idx the index of the specified element
+	 * @throws IndexOutOfBoundsException if the index is out of the scope of the list
 	 */
 	@Override
 	public void moveToFront(int idx) {
@@ -104,6 +108,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * list.
 	 * 
 	 * @param idx the index of the specified element
+	 * @throws IndexOutOfBoundsException if the index is out of the scope of the list
 	 */
 	@Override
 	public void moveToBack(int idx) {
@@ -121,6 +126,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * 
 	 * @param idx the specified valid index
 	 * @return the element of the list at the specified index
+	 * @throws IndexOutOfBoundsException if the index is out of the scope of the list
 	 */
 	@Override
 	public E get(int idx) {

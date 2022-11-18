@@ -34,6 +34,7 @@ public class TestCase {
 	 * @param testType        Test Type of the TestCase as a String
 	 * @param testDescription Description of the TestCase as a String
 	 * @param expectedResults Expected Results of the TestCase as a String
+	 * @throws IllegalArgumentException if something in the test case is invalid
 	 */
 	public TestCase(String testCaseId, String testType, String testDescription, String expectedResults) {
 		if (testCaseId == null || testCaseId.isEmpty() || testType == null || testType.isEmpty()
